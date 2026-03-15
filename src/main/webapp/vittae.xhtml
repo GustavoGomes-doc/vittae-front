@@ -1,0 +1,462 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vittae</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="shortcut icon" href="../imagens/facvicon VITTAE.png" type="image/x-icon">
+</head>
+
+<body>
+    <!-- Header -->
+    <header id="headermain" class="header">
+        <div class="container">
+            <div class="nav-wrapper">
+                <a href="#" class="logo" onclick="showPage('home')">
+                    <i class="fas fa-stethoscope"></i>
+                    <span>Vittae</span>
+                </a>
+
+                <nav class="nav-menu">
+                    <a href="#" onclick="showPage('consultas')" class="nav-link">Consultas</a>
+                    <a href="#" onclick="showPage('especialidades')" class="nav-link">Especialidades</a>
+                    <a href="#" onclick="showPage('exames')" class="nav-link">Exames</a>
+                    <a href="#" onclick="showPage('sobre-nos')" class="nav-link">Sobre nós</a>
+                </nav>
+
+                <div class="auth-buttons">
+                    <a href="../src/login.html" class="btn-register">Fazer login</a>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main>
+        <!-- Home Page -->
+        <div id="home-page" class="page active">
+            <!-- Hero Section -->
+            <section class="hero">
+                <div class="container">
+                    <div class="hero-grid">
+                        <div class="hero-content">
+                            <h1 class="hero-title">VITTAE</h1>
+                            <p class="hero-subtitle">Sistema de Agendamento Médico</p>
+
+                            <div class="hero-card">
+                                <p class="hero-description">
+                                    Somos uma plataforma de agendamento e
+                                    gestão de consultas médicas que conecta
+                                    pacientes e profissionais da saúde de forma
+                                    rápida e prática. Oferecemos um sistema
+                                    completo e fácil para facilitar o agendamento,
+                                    otimizar o tempo e garantir eficiência em
+                                    todo o processo.
+                                </p>
+
+                                <a href="consulta.html" onclick="showPage('')" class="cta-button">
+                                    Agende sua consulta
+                                </a>
+                            </div>
+                        </div>
+
+                        <div class="hero-image">
+                            <div class="image-container">
+                                <img src="https://images.pexels.com/photos/5452293/pexels-photo-5452293.jpeg?auto=compress&cs=tinysrgb&w=800"
+                                    alt="Médica atendendo paciente">
+                                <div class="image-overlay"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Features Section -->
+            <section class="features">
+                <div class="container">
+                    <div class="features-header">
+                        <h2>Por que escolher o Vittae?</h2>
+                        <p>Nossa plataforma oferece soluções completas para otimizar sua experiência médica.</p>
+                    </div>
+
+                    <div class="features-grid">
+                        <div class="feature-card">
+                            <i class="fas fa-calendar-alt"></i>
+                            <h3>Agendamento Fácil</h3>
+                            <p>Agende suas consultas de forma rápida e intuitiva</p>
+                        </div>
+
+                        <div class="feature-card">
+                            <i class="fas fa-users"></i>
+                            <h3>Especialidades</h3>
+                            <p>Acesso a diversos profissionais especializados</p>
+                        </div>
+
+                        <div class="feature-card">
+                            <i class="fas fa-file-text"></i>
+                            <h3>Exames</h3>
+                            <p>Gestão completa de exames e resultados</p>
+                        </div>
+
+                        <div class="feature-card">
+                            <i class="fas fa-heart"></i>
+                            <h3>Cuidado Total</h3>
+                            <p>Acompanhamento personalizado da sua saúde</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+
+        <!-- Consultas Page -->
+        <div id="consultas-page" class="page">
+            <section class="page-hero">
+                <div class="container">
+                    <h1>Consultas Médicas</h1>
+                    <p>Agende sua consulta com os melhores profissionais!</p>
+                    <div class="footer-bottom2">
+                    <p>Clique abaixo e agende agora mesmo!</p> <br>
+                    <a href="../src/consulta.html">Agendar consulta</a>
+                </div>
+                </div>
+            </section>
+
+            <section class="page-content">
+                <div class="container">
+                    <div class="content-grid">
+                        <div class="content-card">
+                            <i class="fas fa-calendar-check"></i>
+                            <h3>Agendamento Online</h3>
+                            <p>Sistema intuitivo para marcar suas consultas de forma rápida e prática.</p>
+                        </div>
+
+                        <div class="content-card">
+                            <i class="fas fa-clock"></i>
+                            <h3>Horários Flexíveis</h3>
+                            <p>Disponibilidade em diversos horários para se adequar à sua rotina.</p>
+                        </div>
+
+                        <div class="content-card">
+                            <i class="fas fa-user-md"></i>
+                            <h3>Profissionais Qualificados</h3>
+                            <p>Médicos experientes e especializados para seu atendimento.</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+
+        <!-- Especialidades Page -->
+        <div id="especialidades-page" class="page">
+            <section class="page-hero">
+                <div class="container">
+                    <h1>Especialidades Médicas</h1>
+                    <p>Encontre o especialista ideal para suas necessidades</p>
+                </div>
+            </section>
+
+            <section class="page-content">
+                <div class="container">
+                    <div class="content-grid">
+                        <div class="content-card">
+                            <i class="fas fa-heartbeat"></i>
+                            <h3>📈 Cardiologia</h3>
+                            <p>Cuidados especializados para a saúde do seu coração.</p>
+                        </div>
+
+                        <div class="content-card">
+                            <i class="fas fa-brain"></i>
+                            <h3>🧠 Neurologia</h3>
+                            <p>Diagnóstico e tratamento de doenças neurológicas.</p>
+                        </div>
+
+                        <div class="content-card">
+                            <i class="fas fa-bone"></i>
+                            <h3>🦴 Ortopedia</h3>
+                            <p>Especialistas em ossos, músculos e articulações.</p>
+                        </div>
+
+                        <div class="content-card">
+                            <i class="fas fa-bone"></i>
+                            <h3>🧪 Alergologia e Imunologia</h3>
+                            <p>Diagnóstico e tratamento de alergias e doenças do sistema imunológico.</p>
+                        </div>
+
+                        <div class="content-card">
+                            <i class="fas fa-bone"></i>
+                            <h3>🩸 Angiologia</h3>
+                            <p>Tratamento clínico de doenças das veias e artérias.</p>
+                        </div>
+
+                        <div class="content-card">
+                            <i class="fas fa-bone"></i>
+                            <h3>🏥 Cirurgia Cardiovascular</h3>
+                            <p>Cirurgias do coração e grandes vasos.</p>
+                        </div>
+
+                        <div class="content-card">
+                            <i class="fas fa-bone"></i>
+                            <h3>📋 Clínica Médica</h3>
+                            <p>Atendimento geral e contínuo para diversas condições de saúde.</p>
+                        </div>
+                        <div class="content-card">
+                            <i class="fas fa-bone"></i>
+                            <h3>✨ Dermatologia</h3>
+                            <p>Cuidado da pele, unhas e cabelos.</p>
+                        </div>
+                        <div class="content-card">
+                            <i class="fas fa-bone"></i>
+                            <h3>🔬 Endocrinologia</h3>
+                            <p>Tratamento de doenças hormonais e metabólicas.</p>
+                        </div>
+                        <div class="content-card">
+                            <i class="fas fa-bone"></i>
+                            <h3>🍽️ Gastroenterologia</h3>
+                            <p>Diagnóstico e tratamento de doenças do sistema digestivo.</p>
+                        </div>
+                        <div class="content-card">
+                            <i class="fas fa-bone"></i>
+                            <h3>🌸 Ginecologia</h3>
+                            <p>Saúde da mulher, sistema reprodutor e acompanhamento ginecológico.</p>
+                        </div>
+                        <div class="content-card">
+                            <i class="fas fa-bone"></i>
+                            <h3>👵 Geriatria</h3>
+                            <p>Cuidado integral da saúde do idoso.</p>
+                        </div>
+                        <div class="content-card">
+                            <i class="fas fa-bone"></i>
+                            <h3>🧬 Hematologia</h3>
+                            <p>Doenças do sangue e da medula óssea.</p>
+                        </div>
+                        <div class="content-card">
+                            <i class="fas fa-bone"></i>
+                            <h3>🟤 Hepatologia</h3>
+                            <p>Tratamento especializado do fígado e vias biliares.</p>
+                        </div>
+                        <div class="content-card">
+                            <i class="fas fa-bone"></i>
+                            <h3>🦠 Infectologia</h3>
+                            <p>Diagnóstico e tratamento de doenças infecciosas.</p>
+                        </div>
+                        <div class="content-card">
+                            <i class="fas fa-bone"></i>
+                            <h3>🖥️ Radiologia</h3>
+                            <p>Diagnóstico por imagem, como raio-X, tomografia e ressonância.</p>
+                        </div>
+                        <div class="content-card">
+                            <i class="fas fa-bone"></i>
+                            <h3>🤲 Reumatologia</h3>
+                            <p>Tratamento de doenças das articulações e tecidos conjuntivos.</p>
+                        </div>
+                        <div class="content-card">
+                            <i class="fas fa-bone"></i>
+                            <h3>🚹 Urologia</h3>
+                            <p>Saúde do trato urinário e do sistema reprodutor masculino.</p>
+                        </div>
+                        <div class="content-card">
+                            <i class="fas fa-bone"></i>
+                            <h3>🧘 Psiquiatria</h3>
+                            <p>Tratamento de condições mentais e emocionais.</p>
+                        </div>
+                        <div class="content-card">
+                            <i class="fas fa-bone"></i>
+                            <h3>🌬️ Pneumologia</h3>
+                            <p>Doenças do pulmão e sistema respiratório.</p>
+                        </div>
+                        <div class="content-card">
+                            <i class="fas fa-bone"></i>
+                            <h3>👶 Pediatria</h3>
+                            <p>Cuidado da saúde de bebês, crianças e adolescentes.</p>
+                        </div>
+                        <div class="content-card">
+                            <i class="fas fa-bone"></i>
+                            <h3>👂 Otorrinolaringologia (ORL)</h3>
+                            <p>Tratamento de doenças do ouvido, nariz e garganta.</p>
+                        </div>
+                        <div class="content-card">
+                            <i class="fas fa-bone"></i>
+                            <h3>💧 Nefrologia</h3>
+                            <p>Tratamento de doenças dos rins.</p>
+                        </div>
+                        <div class="content-card">
+                            <i class="fas fa-bone"></i>
+                            <h3>👁️ Oftalmologia</h3>
+                            <p>Cuidado da visão e saúde ocular.</p>
+                        </div>
+
+                </div>
+            </section>
+        </div>
+
+        <!-- Exames Page -->
+        <div id="exames-page" class="page">
+            <section class="page-hero">
+                <div class="container">
+                    <h1>Exames Médicos</h1>
+                    <p>Realize seus exames aqui!</p> <br>
+                    <a href="#" onclick="showPage('agendamentoex')">Agendar exame</a>
+                </div>
+            </section>
+
+            <section class="page-content">
+                <div class="container">
+                    <div class="content-grid">
+                        <div class="content-card">
+                            <i class="fas fa-x-ray"></i>
+                            <h3>📷 Exames de Imagem</h3>
+                            <p>Radiografia, ultrassom, tomografia e ressonância magnética.</p>
+                        </div>
+
+                        <div class="content-card">
+                            <i class="fas fa-vial"></i>
+                            <h3>🧪 Exames Laboratoriais</h3>
+                            <p>Análises clínicas completas com resultados precisos.</p>
+                        </div>
+
+                        <div class="content-card">
+                            <i class="fas fa-procedures"></i>
+                            <h3>❤️ Exames Cardiológicos</h3>
+                            <p>Avaliações completas do coração para monitorar e prevenir doenças cardiovasculares.</p>
+                        </div>
+
+                        <div class="content-card">
+                            <i class="fas fa-procedures"></i>
+                            <h3>🧠 Exames Neurológicos</h3>
+                            <p>Investigação precisa do sistema nervoso para diagnósticos de alterações cerebrais e
+                                neurológicas.</p>
+                        </div>
+
+                        <div class="content-card">
+                            <i class="fas fa-procedures"></i>
+                            <h3>🧫 Exames Endócrinos</h3>
+                            <p>Análises hormonais detalhadas para avaliação do metabolismo e regulação hormonal do
+                                organismo.</p>
+                        </div>
+
+                        <div class="content-card">
+                            <i class="fas fa-procedures"></i>
+                            <h3>🩺 Exames Preventivos</h3>
+                            <p>Avaliações periódicas para detecção precoce de doenças e manutenção da saú</p>
+                        </div>
+
+                        <div class="content-card">
+                            <i class="fas fa-procedures"></i>
+                            <h3>👁️ Exames Oftalmológicos</h3>
+                            <p>Diagnósticos completos da visão e saúde ocular com equipamentos de alta precisão.</p>
+                        </div>
+
+                        <div class="content-card">
+                            <i class="fas fa-procedures"></i>
+                            <h3>🌬️ Exames Respiratórios</h3>
+                            <p>Avaliações da função pulmonar e diagnóstico de doenças respiratórias.</p>
+                        </div>
+
+                        <div class="content-card">
+                            <i class="fas fa-procedures"></i>
+                            <h3>🦠 Exames Infecciosos</h3>
+                            <p>Testes específicos para detecção de vírus, bactérias e doenças transmissíveis.</p>
+                        </div>
+
+                        <div class="content-card">
+                            <i class="fas fa-procedures"></i>
+                            <h3>👂 Exames Otorrinolaringológicos</h3>
+                            <p>Avaliações do ouvido, nariz e garganta para diagnóstico de alterações auditivas e respiratórias.</p>
+                        </div>
+
+                        <div class="content-card">
+                            <i class="fas fa-procedures"></i>
+                            <h3>🧍‍♂️ Exames Urológicos</h3>
+                            <p>Avaliações do sistema urinário e saúde masculina com foco preventivo e diagnóstico.</p>
+                        </div>
+
+                        <div class="content-card">
+                            <i class="fas fa-procedures"></i>
+                            <h3>👶 Exames Ginecológicos e Obstétricos</h3>
+                            <p>Monitoramento da saúde da mulher, prevenção e acompanhamento da gestação.</p>
+                        </div> 
+                    </div>
+                </div>
+            </section>
+        </div>
+
+        <!-- Sobre Nós Page -->
+        <div id="sobre-nos-page" class="page">
+            <section class="page-hero">
+                <div class="container">
+                    <h1>Sobre Nós</h1>
+                    <p>Conheça um mais pouco sobre nós!</p>
+                </div>
+            </section>
+
+            <section class="page-content">
+                <div class="container">
+                    <div class="about-content">
+                        <div class="about-text">
+                            <h3>Nossa Missão</h3>
+                            <p>
+                                O Vittae é uma startup, que nasceu através de um grupo de alunos do Instituto Federal de
+                                São Paulo.
+                                Acreditamos que o acesso à saúde deve ser simples, rápido e eficiente; e que pode ser
+                                automatizado pela técnologia.
+                                Por isso, começamos esse projeto afim de melhorar a praticidade na vida das pessoas.
+                            </p>
+
+                            <h3>Nossos Valores</h3>
+                            <ul>
+                                <li>Compromisso com a qualidade no atendimento</li>
+                                <li>Inovação tecnológica a serviço da saúde</li>
+                                <li>Transparência em todos os processos</li>
+                                <li>Respeito e cuidado com cada paciente</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <!-- Rodapé -->
+        <footer id="footermain" class="footer">
+            <div class="container">
+                <div class="footer-content">
+                    <div class="footer-section">
+                        <div class="footer-logo">
+                            <i class="fas fa-stethoscope"></i>
+                            <span>Vittae</span>
+                        </div>
+                        <p>Sistema de Agendamento Médico</p>
+                    </div>
+
+                    <div class="footer-section">
+                        <h4>Links Rápidos</h4>
+                        <ul>
+                            <li><a href="#" onclick="showPage('consultas')">Consultas</a></li>
+                            <li><a href="#" onclick="showPage('especialidades')">Especialidades</a></li>
+                            <li><a href="#" onclick="showPage('exames')">Exames</a></li>
+                            <li><a href="#" onclick="showPage('sobre-nos')">Sobre nós</a></li>
+                        </ul>
+                    </div>
+
+                    <div class="footer-section">
+                        <h4>Contato</h4>
+                        <ul>
+                            <li><i class="fas fa-phone"></i> (11) 91130-4354</li>
+                            <li><i class="fas fa-envelope"></i> vittaemedicine@gmail.com</li>
+                            <li><i class="fas fa-map-marker-alt"></i> Salto, SP</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="footer-bottom">
+                    <p>&copy; 2025 Vittae.</p>
+                </div>
+            </div>
+        </footer>
+
+    <script src="/js/script.js"></script>
+</body>
+
+</html>

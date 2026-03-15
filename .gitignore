@@ -1,0 +1,46 @@
+# --- Build & Arquivos Gerados ---
+target/
+build/
+*.class
+*.jar
+*.war
+*.ear
+
+# --- Dependências ---
+.metadata/
+.settings/
+.project
+.classpath
+node_modules/
+dist/
+
+# --- IDEs ---
+# IntelliJ IDEA
+.idea/
+*.iml
+*.iws
+
+# Eclipse
+.settings/
+.project
+.classpath
+.metadata/
+
+# NetBeans
+nbproject/private/
+nbbuild/
+nbdist/
+nbshared/
+
+# --- Logs e Temporários ---
+*.log
+*.tmp
+*.temp
+.DS_Store
+Thumbs.db
+
+# --- JSF / Servidor (Ex: WildFly/Tomcat) ---
+.faces-config.xml.jsfdia
+# Opcional: ignorar pasta de deploy local
+# src/main/webapp/WEB-INF/lib/
+

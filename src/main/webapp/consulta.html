@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Agendamento de Consultas - Vittae</title>
+    <link rel="stylesheet" href="../css/consulta.css">
+</head>
+<body>
+
+    <header class="header">
+        <div class="container">
+            <div class="nav-wrapper">
+                <a href="#" class="logo" onclick="showPage('home')">
+                    <i class="fas fa-stethoscope"></i>
+                    <span>Vittae</span>
+                </a>
+
+                <nav class="nav-menu">
+                    <a href="/src/vittae.html" onclick="showPage('consultas')" class="nav-link">Consultas</a>
+                    <a href="/src/vittae.html" onclick="showPage('especialidades')" class="nav-link">Especialidades</a>
+                    <a href="/src/vittae.html" onclick="showPage('exames')" class="nav-link">Exames</a>
+                    <a href="/src/vittae.html" onclick="showPage('sobre-nos')" class="nav-link">Sobre nós</a>
+                </nav>
+
+                <div class="auth-buttons">
+                    <a href="../src/login.html" class="btn-login">Fazer login</a>
+                </div>
+            </div>
+        </div> 
+    </header> 
+
+        <div class="appointment-container">
+            <div class="appointment-header">
+            <h2>Agendamento de Consulta</h2>
+        </div>
+
+        <!-- Progress Bar -->
+        <div class="progress-wrapper">
+            <div class="progress-steps">
+                <div class="step-item">
+                    <div class="step-circle active" id="circle1"><span>1</span></div>
+                    <span class="step-label">Consulta</span> 
+                </div>
+
+                <div class="step-item">
+                    <div class="step-circle" id="circle2"><span>2</span></div>
+                    <span class="step-label">Médico</span>
+                </div>
+
+                <div class="step-item">
+                    <div class="step-circle" id="circle3"><span>3</span></div>
+                    <span class="step-label">Dados</span>
+                </div>
+            </div>
+
+            <div class="progress-line">
+                <div class="progress-fill" id="progressBar"></div>
+            </div>
+        </div> <br>
+
+    <!-- Step 1: Dados da Consulta -->
+    <div class="form-step active" id="step1">
+        <h3>Dados da Consulta</h3>
+        
+        <div class="form-group">
+            <label>Especialidade da consulta</label>
+            <select id="consultaType" class="form-control">
+                <option value="">Selecione...</option>
+                <option value="rotina">Cardiologia</option>
+                <option value="retorno">Neurologia</option>
+                <option value="exame">Alergologia e Imunologia</option>
+                <option value="urgencia">Urologia</option>
+                <option value="urgencia">Ginecologia</option>
+                <option value="urgencia">Radiologia</option>
+            </select>
+        </div>
+
+        <div class="form-group">
+            <label>Tipo de Consulta</label>
+            <select id="consultaType" class="form-control">
+                <option value="">Selecione...</option>
+                <option value="rotina">Consulta de Rotina</option>
+                <option value="retorno">Retorno</option>
+                <option value="urgencia">Urgência</option>
+            </select>
+        </div>
+
+        <div class="form-group">
+            <label>Modalidade</label>
+            <div class="radio-options">
+                <label class="radio-box active" id="radioPresencial">
+                    <input type="radio" name="modalidade" value="presencial" checked>
+                    <span>Presencial</span>
+                </label>
+
+                <label class="radio-box" id="radioTeleconsulta">
+                    <input type="radio" name="modalidade" value="teleconsulta">
+                    <span>Teleconsulta</span>
+                </label>
+            </div>
+        </div>
+
+        <div class="form-row">
+            <div class="form-group">
+                <label>Data</label>
+                <input type="date" id="consultaDate" class="form-control">
+            </div>
+            <div class="form-group">
+                <label>Horário</label>
+                <input type="time" id="consultaTime" class="form-control">
+            </div>
+        </div>
+    </div>
+
+    <!-- Step 2: Seleção de Médico -->
+    <div class="form-step" id="step2">
+        <div class="step-header-row">
+            <h3>Selecione o Médico</h3>
+            <input type="text" id="searchInput" placeholder="Buscar..." class="search-input">
+        </div>
+        <div class="doctors-list" id="doctorsList"></div>
+    </div>
+
+    <!-- Step 3: Dados do Paciente -->
+    <div class="form-step" id="step3">
+        <h3>Seus Dados</h3>
+        
+        <div class="form-group">
+            <label>Nome Completo</label>
+            <input type="text" id="patientName" class="form-control" placeholder="Digite seu nome">
+        </div>
+
+        <div class="form-row">
+            <div class="form-group">
+                <label>CPF</label>
+                <input type="text" id="patientCPF" class="form-control" placeholder="000.000.000-00" maxlength="14">
+            </div>
+            <div class="form-group">
+                <label>Telefone</label>
+                <input type="tel" id="patientPhone" class="form-control" placeholder="(00) 00000-0000" maxlength="15">
+            </div>
+            <div class="form-group">
+                <label>Data de Nascimento</label>
+                <input type="text" id="patientDate" class="form-control" placeholder="00/00/0000" maxlength="10">
+            </div>
+            <div class="form-group">
+                <label>Sexo Biológico</label>
+                <select id="patientSex" class="form-group">
+                <option value="">Selecione...</option>
+                <option value="rotina">Masculino</option>
+                <option value="retorno">Feminino</option>
+            </select>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label>Email</label>
+            <input type="email" id="patientEmail" class="form-control" placeholder="seu@email.com">
+        </div>
+
+        <div class="form-group">
+            <label>Observações (Opcional)</label>
+            <textarea id="observations" class="form-control" rows="3" placeholder="Alguma observação?"></textarea>
+        </div>
+    </div>
+
+    <!-- Buttons -->
+    <div class="form-actions">
+        <button class="btn btn-secondary" id="prevBtn" disabled>← Voltar</button>
+        <button class="btn btn-primary" id="nextBtn">Próximo →</button>
+        <button class="btn btn-success" id="submitBtn" style="display: none;">Prosseguir ✓</button>
+    </div>
+</div>
+
+<!-- Success Modal -->
+<div class="modal-overlay" id="successModal">
+    <div class="modal-content">
+        <div class="success-check">✓</div>
+        <h2>Agendamento Confirmado!</h2>
+        <p>Sua consulta foi agendada com sucesso.</p>
+        
+        <div class="summary-box">
+            <h4>Resumo</h4>
+            <div class="summary-row">
+                <span>Médico:</span>
+                <strong id="summaryDoctor">-</strong>
+            </div>
+            <div class="summary-row">
+                <span>Data:</span>
+                <strong id="summaryDate">-</strong>
+            </div>
+            <div class="summary-row">
+                <span>Modalidade:</span>
+                <strong id="summaryMode">-</strong>
+            </div>
+            <div class="summary-row">
+                <span>Local:</span>
+                <strong id="summaryLoc">-</strong>
+            </div>
+        </div>
+
+        <button class="btn btn-primary btn-block" id="resetBtn">Concluído</button>
+    </div>
+</div>
+
+     <footer class="footer">
+            <div class="container">
+                <div class="footer-content">
+                    <div class="footer-section">
+                        <div class="footer-logo">
+                            <i class="fas fa-stethoscope"></i>
+                            <span>Vittae</span>
+                        </div>
+                        <p>Sistema de Agendamento Médico</p>
+                    </div>
+
+                    <div class="footer-section">
+                        <h4>Links Rápidos</h4>
+                        <ul>
+                            <li><a href="/src/vittae.html" onclick="showPage('consulta')">Consultas</a></li>
+                            <li><a href="/src/vittae.html" onclick="showPage('especialidades')">Especialidades</a></li>
+                            <li><a href="/src/vittae.html" onclick="showPage('exames')">Exames</a></li>
+                            <li><a href="/src/vittae.html" onclick="showPage('sobre-nos')">Sobre nós</a></li>
+                        </ul>
+                    </div>
+
+                    <div class="footer-section">
+                        <h4>Contato</h4>
+                        <ul>
+                            <li><i class="fas fa-phone"></i> (11) 91130-4354</li>
+                            <li><i class="fas fa-envelope"></i> vittaemedicine@gmail.com</li>
+                            <li><i class="fas fa-map-marker-alt"></i> Salto, SP</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="footer-bottom">
+                    <p>&copy; 2025 Vittae.</p>
+                </div>
+            </div>
+        </footer>
+
+<script src="/js/consulta.js"></script>
+</body>
+</html>

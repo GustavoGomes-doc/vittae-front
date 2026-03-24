@@ -1,4 +1,4 @@
-package demojsf.model;
+package model;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -11,10 +11,10 @@ import tools.jackson.databind.ObjectMapper;
 public class JsonUtils {
 
 
-	    public static final String ALUNO_API = "http://localhost:8080/demo-api/aluno/all";  
+	    public static final String MEDICO_API = "http://localhost:8081/vittae/medico/all";  
 	    public static final ObjectMapper OBJECT_MAPPER = new ObjectMapper();  
 
-	    public static List<Aluno> toList(InputStream inputStream) throws IOException {  
+	    public static List<Medico> toList(InputStream inputStream) throws IOException {  
 	        try {  
 	            return OBJECT_MAPPER.readValue(inputStream, new TypeReference<>() {});  
 	        }  
@@ -23,16 +23,16 @@ public class JsonUtils {
 	        }  
 	    }  
 
-	    public static Aluno toObject(InputStream inputStream) throws IOException {  
+	    public static Medico toObject(InputStream inputStream) throws IOException {  
 	        try {  
-	            return OBJECT_MAPPER.readValue(inputStream, Aluno.class);  
+	            return OBJECT_MAPPER.readValue(inputStream, Medico.class);  
 	        }  
 	        catch (JacksonException exc) {  
 	            throw new IOException(exc);  
 	        }  
 	    }  
 
-	    public static String toJson(Aluno a) throws IOException {  
+	    public static String toJson(Medico a) throws IOException {  
 	        try {  
 	            return OBJECT_MAPPER.writeValueAsString(a);  
 	        }  
@@ -41,9 +41,9 @@ public class JsonUtils {
 	        }
 	    }
 
-	    public static Aluno buildAluno() {  	        
+	    public static Medico buildMedico() {  	        
 
-	       Aluno a = new Aluno();
+	       Medico a = new Medico();
 	       a.setEmail("mura@arum.com");
 	       a.setNome("Murakami");
 	         

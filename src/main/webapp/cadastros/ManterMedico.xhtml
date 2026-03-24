@@ -6,7 +6,7 @@
 
 	<ui:define name="corpo">
 
-		<h1>Manter Aluno</h1>
+		<h1>Manter Medico</h1>
 
 		<h:form id="frmPesquisa">
 			<p:messages id="messages" showDetail="false" closable="true">
@@ -22,23 +22,23 @@
 			</p:toolbar>
 
 
-			<p:dataTable id="alunosTable" var="aluno"
-				value="#{manterAlunoBean.alunos}" lazy="false"
-				style="margin-top: 20px" emptyMessage="Nenhum aluno encontrado."
+			<p:dataTable id="medicosTable" var="medico"
+				value="#{manterMedicoBean.medicos}" lazy="false"
+				style="margin-top: 20px" emptyMessage="Nenhum medico encontrado."
 				rows="10" paginator="true" paginatorAlwaysVisible="true"
 				paginatorPosition="bottom" rowsPerPageTemplate="5,10,15">
 
 				<p:column headerText="Id" style="width: 40px; text-align: center">
-					<h:outputText value="#{aluno.id}" />
+					<h:outputText value="#{medico.id}" />
 				</p:column>
 
 				<p:column headerText="Nome" style="width: 150px; text-align: left"
-					filterBy="#{aluno.nome}">
-					<h:outputText value="#{aluno.nome}" />
+					filterBy="#{medico.nome}">
+					<h:outputText value="#{medico.nome}" />
 				</p:column>
 
 				<p:column headerText="Email" style="width: 150px; text-align: left">
-					<h:outputText value="#{aluno.email}" />
+					<h:outputText value="#{medico.email}" />
 				</p:column>
 
 				<p:column headerText="Operações"
@@ -47,14 +47,14 @@
 					<p:commandButton id="cb1" icon="pi pi-pencil" title="Editar"
 						oncomplete="PF('editarDialogWidgetVar').show()"
 						update=":frmPesquisa:editarDialog" process="@this">
-						<f:setPropertyActionListener target="#{manterAlunoBean.aluno}"
-							value="#{aluno}" />
+						<f:setPropertyActionListener target="#{manterMedicoBean.medico}"
+							value="#{medico}" />
 					</p:commandButton>
 
 					<p:commandButton icon="pi pi-trash" title="Excluir"
 						onclick="PF('confirmacaoExclusao').show();" process="@this">
-						<f:setPropertyActionListener target="#{manterAlunoBean.aluno}"
-							value="#{aluno}" />
+						<f:setPropertyActionListener target="#{manterMedicoBean.medico}"
+							value="#{medico}" />
 					</p:commandButton>
 				</p:column>
 
@@ -71,28 +71,28 @@
 
 					<p:outputLabel value="Id" for="id" />
 					<p:inputText id="id" size="20" maxlength="20"
-						value="#{manterAlunoBean.aluno.id}" readonly="true" />
+						value="#{manterMedicoBean.medico.id}" readonly="true" />
 
 					<p:outputLabel value="Nome" for="nome" />
 					<h:panelGroup>
 						<p:inputText id="nome" size="60" maxlength="80" required="true"
 							validatorMessage="O nome é obrigatório."
-							value="#{manterAlunoBean.aluno.nome}" />
+							value="#{manterMedicoBean.medico.nome}" />
 					</h:panelGroup>
 
 					<p:outputLabel value="Email" for="email" />
 					<h:panelGroup>
 						<p:inputText id="email" size="60" maxlength="80" required="true"
 							validatorMessage="O email é obrigatório."
-							value="#{manterAlunoBean.aluno.email}" />
+							value="#{manterMedicoBean.medico.email}" />
 					</h:panelGroup>
 
 					<h:panelGroup>
 						<p:commandButton icon="pi pi-save" id="salvarButton"
-							value="Salvar" title="Grava dados do aluno"
-							actionListener="#{manterAlunoBean.salvar}"
+							value="Salvar" title="Grava dados do medico"
+							actionListener="#{manterMedicoBean.salvar}"
 							oncomplete="if (!args.validationFailed) PF('editarDialogWidgetVar').hide()"
-							update="alunosTable messages" process="@this editarGrid">
+							update="medicosTable messages" process="@this editarGrid">
 						</p:commandButton>
 
 						<p:spacer width="10px" />
@@ -107,15 +107,15 @@
 
 			<p:confirmDialog id="confirmacaoExclusaoDialog"
 				widgetVar="confirmacaoExclusao"
-				message="Tem certeza que deseja excluir o aluno #{manterAlunoBean.aluno.nome}?"
-				header="Exclusão de aluno" severity="alert">
+				message="Tem certeza que deseja excluir o medico #{manterMedicoBean.medico.nome}?"
+				header="Exclusão de medico" severity="alert">
 				<p:button icon="pi pi-thumbs-down" value="Não"
 					onclick="PF('confirmacaoExclusao').hide(); return false;"
 					process="@this" />
 				<p:commandButton icon="pi pi-thumbs-up" value="Sim"
-					update=":frmPesquisa:alunosTable"
+					update=":frmPesquisa:medicosTable"
 					onclick="PF('confirmacaoExclusao').hide();"
-					action="#{manterAlunoBean.excluir}" process="@this" />
+					action="#{manterMedicoBean.excluir}" process="@this" />
 			</p:confirmDialog>
 
 		</h:form>

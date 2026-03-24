@@ -1,1 +1,1 @@
-# vittae-front
+Demo de JSF App consumindo Spring REST API

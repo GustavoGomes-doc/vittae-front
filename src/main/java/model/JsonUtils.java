@@ -11,7 +11,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 public class JsonUtils {
 
 
-	    public static final String MEDICO_API = "http://localhost:8081/vittae/medico/all";  
+	    public static final String MEDICO_API = "http://localhost:8081/medicos";  
 	    public static final ObjectMapper OBJECT_MAPPER = new ObjectMapper();  
 
 	    public static List<Medico> toList(InputStream inputStream) throws IOException {  

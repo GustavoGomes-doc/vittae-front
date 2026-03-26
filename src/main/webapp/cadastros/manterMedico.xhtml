@@ -1,0 +1,132 @@
+<ui:composition
+  template="/WEB-INF/template/LayoutPadrao.xhtml"
+  xmlns="http://www.w3.org/1999/xhtml"
+  xmlns:h="http://xmlns.jcp.org/jsf/html"
+  xmlns:f="http://xmlns.jcp.org/jsf/core"
+  xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+  xmlns:p="http://primefaces.org/ui">
+  
+  <ui:define name="titulo">Cadastro de Médicos</ui:define>
+  
+  <ui:define name="corpo">
+  
+	<h:form id="formulario">
+
+		<h1>MÉDICOS</h1>
+
+		<p:growl id="growl" showDetail="false" />
+
+			<p:toolbar style="margin-top: 20px">
+				<p:toolbarGroup>
+					<p:commandButton icon="pi pi-plus" value="Novo" id="botaoNovo" 
+						oncomplete="PF('editarDialogWidgetVar').show()"
+						actionListener="#{manterMedicoBean.limpar}"
+		            	update="editarDialog"		            	
+		            	process="@this"/>
+				</p:toolbarGroup>
+			</p:toolbar>
+			
+			<p:dataTable id="medicosTable" var="medico" value="#{manterMedicoBean.medicos}"
+				lazy="false" showGridlines="true"
+	    		style="margin-top: 20px" emptyMessage="Nenhum médico encontrado." rows="10"
+	    		paginator="true" paginatorAlwaysVisible="true" paginatorPosition="bottom"
+	    		rowsPerPageTemplate="5,10,15">		
+
+				<p:column headerText="Id">
+					<h:outputText value="#{medico.id}" />
+				</p:column>	
+
+				<p:column headerText="Nome"
+					filterBy="#{medico.nome}" sortBy="#{medico.nome}">
+					<h:outputText value="#{medico.nome}" />
+				</p:column>	
+				
+				<p:column headerText="E-mail"
+					filterBy="#{medico.email}" sortBy="#{medico.email}">
+					<h:outputText value="#{medico.email}" />
+				</p:column>
+
+				<p:column headerText="CRM"
+					filterBy="#{medico.crm}" sortBy="#{medico.crm}">
+					<h:outputText value="#{medico.crm}" />
+				</p:column>
+
+				<p:column headerText="Telefone"
+					filterBy="#{medico.telefone}" sortBy="#{medico.telefone}">
+					<h:outputText value="#{medico.telefone}" />
+				</p:column>
+
+				<p:column headerText="Operações">					
+					
+					<p:commandButton id="cb1" icon="pi pi-pencil" title="Editar"	    				
+		            	oncomplete="PF('editarDialogWidgetVar').show()"
+		            	update=":formulario:editarDialog"		            	
+		            	process="@this">
+		            	<f:setPropertyActionListener target="#{manterMedicoBean.medico}" 
+							value="#{medico}" />
+	            	</p:commandButton>
+
+					<p:commandButton icon="pi pi-trash"  title="Excluir"
+						onclick="PF('confirmacaoExclusao').show();"
+						process="@this"	>
+						<f:setPropertyActionListener target="#{manterMedicoBean.medico}"
+							value="#{medico}" />
+					</p:commandButton>
+				</p:column>
+
+			</p:dataTable>
+
+	<p:dialog id="editarDialog" header="Médico" widgetVar="editarDialogWidgetVar"
+				modal="true" resizable="true" closeOnEscape="true"
+				showEffect="explode" hideEffect="explode" 
+				width="100%" position="center top" maximizable="true"
+				height="70%" fitViewport="true" responsive="true">
+
+		<p:panelGrid id="grid" columns="2">
+
+			<p:outputLabel for="id" value="Id: " />
+			<p:outputLabel id="id" value="#{manterMedicoBean.medico.id}" />
+
+			<p:outputLabel for="nome" value="Nome: " />
+			<p:inputText id="nome" value="#{manterMedicoBean.medico.nome}" 
+			required="true"/>
+			
+			<p:outputLabel for="email" value="E-mail: " />
+			<p:inputText id="email" value="#{manterMedicoBean.medico.email}" 
+			required="true"/>
+
+			<p:outputLabel for="crm" value="CRM:  " />
+			<p:inputText id="crm" value="#{manterMedicoBean.medico.crm}" />
+
+			<p:outputLabel for="telefone" value="Telefone: " />
+        	<p:inputMask id="telefone" value="#{manterMedicoBean.medico.telefone}"
+			 mask="(99) 99999-9999"  validateMask="true"/>
+
+			<p:commandButton icon="pi pi-save" id="salvarButton"
+				value="Salvar" title="Grava dados do médico"
+				actionListener="#{manterMedicoBean.salvar}"
+				oncomplete="if (!args.validationFailed) PF('editarDialogWidgetVar').hide()"
+				update="growl medicosTable" process="@this grid">
+			</p:commandButton>						
+			
+		</p:panelGrid>
+
+	</p:dialog>
+	
+	<p:confirmDialog id="confirmacaoExclusaoDialog"
+				widgetVar="confirmacaoExclusao"
+				message="Tem certeza que deseja excluir o médico #{manterMedicoBean.medico.nome}?"
+				header="Exclusão de médico" severity="alert">
+				<p:button icon="pi pi-thumbs-down" value="Não"
+					onclick="PF('confirmacaoExclusao').hide(); return false;" 
+					process="@this"/>
+				<p:commandButton icon="pi pi-thumbs-up" value="Sim" 
+				    update=":formulario:medicosTable"
+					onclick="PF('confirmacaoExclusao').hide();"
+					action="#{manterMedicoBean.excluir}"
+					process="@this"/>
+			</p:confirmDialog>	
+
+	</h:form>
+  </ui:define>
+</ui:composition>

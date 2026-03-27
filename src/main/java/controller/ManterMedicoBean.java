@@ -5,6 +5,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.annotation.PostConstruct;
+import javax.faces.application.FacesMessage;
+import javax.faces.context.FacesContext;
 import javax.faces.view.ViewScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
@@ -13,7 +15,8 @@ import lombok.Getter;
 import lombok.Setter;
 import lombok.extern.log4j.Log4j2;
 import model.Medico;
-import service.MedicoService;
+import service.ManterMedicoService;
+
 
 @Log4j2
 @Getter
@@ -28,7 +31,7 @@ public class ManterMedicoBean implements Serializable {
 	private Medico medico;
 
 	@Inject
-	private MedicoService medicoService;
+	private ManterMedicoService medicoService;
 
 	@PostConstruct
 	public void inicializar() {
@@ -36,17 +39,56 @@ public class ManterMedicoBean implements Serializable {
 		buscarTodos();
 	}
 
+	//ManterMedicoBean.java
 	public void salvar() {
-		log.info("salvando...");
+		try {
+			log.info("Salvando médico: " + medico.getNome());
+
+			boolean salvou = medicoService.salvar(this.medico); //pega o retorno do service
+
+			if (salvou) {
+				FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("Médico salvo com sucesso!"));
+				limpar();
+				this.medicos = medicoService.listarTodos();
+			} else {
+				FacesContext.getCurrentInstance().addMessage(null,
+						new FacesMessage(FacesMessage.SEVERITY_ERROR, "Erro", "A API recusou o cadastro."));
+			}
+		} catch (Exception e) {
+			log.error("Erro ao salvar", e);
+			FacesContext.getCurrentInstance().addMessage(null,
+					new FacesMessage(FacesMessage.SEVERITY_ERROR, "Erro fatal", e.getMessage()));
+		}
 	}
 
-	public void excluir() {
-		log.info("excluindo...");
+	public void excluir(Medico medicoSelecionado) {
+	    try {
+	        log.info("Excluindo ID: " + medicoSelecionado.getId());
+	        
+	        // API
+	        boolean ok = medicoService.excluir(medicoSelecionado.getId());
+	        
+	        if (ok) {
+	            //aviso
+	            FacesContext.getCurrentInstance().addMessage(null, 
+	                new FacesMessage("Médico removido!"));
+	                
+	            //att
+	            this.medicos = medicoService.listarTodos(); 
+	        }
+	    } catch (Exception e) {
+	        log.error("Erro ao excluir", e);
+	    }
+	}
+	
+	public void prepararEdicao(Medico medicoSelecionado) {
+	    log.info("Preparando edição do médico: " + medicoSelecionado.getNome());
+	    this.medico = medicoSelecionado; 
 	}
 
 	public void buscarTodos() {
 		log.info("Buscando médicos através do Service...");
-		// O Bean apenas pede a lista para o Service!
+		// bean pedidno lista para o service
 		this.medicos = medicoService.buscarTodos();
 
 		log.info("Busca concluída. Médicos encontrados: " + (this.medicos != null ? this.medicos.size() : 0));

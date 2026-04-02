@@ -31,7 +31,7 @@
 
         try {
             // Altere para a rota correta da sua API
-            const response = await fetch("http://localhost:8080/api/medicos");
+            const response = await fetch("http://localhost:8081/api/medicos");
 
             if (!response.ok) {
                 throw new Error('Falha ao carregar médicos');

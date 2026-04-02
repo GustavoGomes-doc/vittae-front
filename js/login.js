@@ -61,7 +61,7 @@ loginForm.addEventListener('submit', async (e) => {
         loginError.style.display = "none";
 
         // Faz o POST para o seu back-end (Verifique se essa é a URL correta no Java)
-        const resposta = await fetch('http://localhost:8080/api/login', {
+        const resposta = await fetch('http://localhost:8081/api/login', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'

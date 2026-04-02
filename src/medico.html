@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vittae - Painel do Médico</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="../css/medico.css">
+</head>
+<body>
+
+    <div class="dashboard-container">
+        <aside class="sidebar">
+            <div class="sidebar-logo">
+                <i class="fas fa-stethoscope"></i>
+                <span>Vittae</span>
+            </div>
+            
+            <nav class="sidebar-nav">
+                <a href="#" class="nav-item active" data-target="agenda">
+                    <i class="fas fa-calendar-check"></i> Agenda do Dia
+                </a>
+                <a href="#" class="nav-item" data-target="pacientes">
+                    <i class="fas fa-users"></i> Meus Pacientes
+                </a>
+                <a href="#" class="nav-item" data-target="historico">
+                    <i class="fas fa-file-medical"></i> Histórico
+                </a>
+            </nav>
+
+            <div class="sidebar-footer">
+                <a href="login.html"><i class="fas fa-sign-out-alt"></i> Sair</a>
+            </div>
+        </aside>
+
+        <main class="main-content">
+            
+            <header class="topbar">
+                <div class="search-bar">
+                    <i class="fas fa-search"></i>
+                    <input type="text" placeholder="Buscar pacientes ou prontuário...">
+                </div>
+                <div class="user-info">
+                    <div class="notifications">
+                        <i class="fas fa-bell"></i>
+                        <span class="badge">3</span>
+                    </div>
+                    <img src="https://ui-avatars.com/api/?name=Dr+Ricardo&background=7c3aed&color=fff" alt="Médico">
+                </div>
+            </header>
+
+            <section id="agenda" class="content-section active">
+                <div class="welcome">
+                    <h1>Sua Agenda de Hoje</h1>
+                    <p>Você tem atendimentos agendados para este período.</p>
+                </div>
+
+                <div class="appointments-container">
+                    <div class="appointment-card-med">
+                        <div class="time-tag">09:00</div>
+                        <div class="details">
+                            <h3>João Silva</h3>
+                            <p>Consulta de Rotina</p>
+                        </div>
+                        <button class="btn-main-small">Atender</button>
+                    </div>
+
+                    <div class="appointment-card-med">
+                        <div class="time-tag">10:30</div>
+                        <div class="details">
+                            <h3>Maria Oliveira</h3>
+                            <p>Retorno / Exames</p>
+                        </div>
+                        <button class="btn-main-small">Atender</button>
+                    </div>
+                </div>
+            </section>
+
+            <section id="pacientes" class="content-section">
+                <div class="welcome">
+                    <h1>Meus Pacientes</h1>
+                    <p>Gestão de prontuários e contatos.</p>
+                </div>
+                <div class="doctors-grid"> <div class="doctor-card">
+                        <img src="https://ui-avatars.com/api/?name=JS&background=f1f5f9&color=7c3aed" alt="">
+                        <h3>João Silva</h3>
+                        <p>Paciente desde 2024</p>
+                        <button class="btn-main">Ver Prontuário</button>
+                    </div>
+                    <div class="doctor-card">
+                        <img src="https://ui-avatars.com/api/?name=MO&background=f1f5f9&color=7c3aed" alt="">
+                        <h3>Maria Oliveira</h3>
+                        <p>Paciente desde 2025</p>
+                        <button class="btn-main">Ver Prontuário</button>
+                    </div>
+                </div>
+            </section>
+
+            <section id="historico" class="content-section">
+                <div class="welcome">
+                    <h1>Histórico de Atendimentos</h1>
+                    <p>Relatório completo de consultas finalizadas.</p>
+                </div>
+                <div class="recent-table">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Paciente</th>
+                                <th>Data</th>
+                                <th>Diagnóstico</th>
+                                <th>Status</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Roberto Souza</td>
+                                <td>28/03/2026</td>
+                                <td>Gripe Viral</td>
+                                <td><span class="status-badge-med">Finalizado</span></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+
+        </main>
+    </div>
+
+    <script src="../js/medico.js"></script>
+</body>
+</html>

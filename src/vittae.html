@@ -31,6 +31,7 @@
                 </div>
             </div>
         </div>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     </header>
 
     <!-- Main Content -->
@@ -56,9 +57,7 @@
                                     todo o processo.
                                 </p>
 
-                                <a href="consulta.html" onclick="showPage('')" class="cta-button">
-                                    Agende sua consulta
-                                </a>
+                                <a href="../login.html" class="btn-main">Agende sua consulta</a>
                             </div>
                         </div>
 
@@ -117,11 +116,158 @@
                     <h1>Consultas Médicas</h1>
                     <p>Agende sua consulta com os melhores profissionais!</p>
                     <div class="footer-bottom2">
-                    <p>Clique abaixo e agende agora mesmo!</p> <br>
-                    <a href="../src/consulta.html">Agendar consulta</a>
-                </div>
+                        <p>Clique abaixo e agende agora mesmo!</p> <br>
+
+                        <a href="login.html" class="btn-main">Agende sua consulta</a>
+
+                    </div>
                 </div>
             </section>
+
+            <div id="agendamento-form-page" class="page">
+                <section class="page-hero">
+                    <div class="container">
+
+                        <div class="appointment-container">
+                            <div class="appointment-header">
+                                <h2>Agendamento de Consulta</h2>
+                            </div>
+
+                            <div class="progress-wrapper">
+                                <div class="progress-steps">
+                                    <div class="step-item">
+                                        <div class="step-circle active" id="circle1"><span>1</span></div>
+                                        <span class="step-label">Consulta</span>
+                                    </div>
+                                    <div class="step-item">
+                                        <div class="step-circle" id="circle2"><span>2</span></div>
+                                        <span class="step-label">Médico</span>
+                                    </div>
+                                    <div class="step-item">
+                                        <div class="step-circle" id="circle3"><span>3</span></div>
+                                        <span class="step-label">Dados</span>
+                                    </div>
+                                </div>
+                                <div class="progress-line">
+                                    <div class="progress-fill" id="progressBar"></div>
+                                </div>
+                            </div> <br>
+
+                            <div class="form-step active" id="step1">
+                                <h3>Dados da Consulta</h3>
+
+                                <div class="form-group">
+                                    <label>Especialidade da consulta</label>
+                                    <select id="especialidadeType" class="form-control">
+                                        <option value="">Selecione...</option>
+                                        <option value="cardiologia">Cardiologia</option>
+                                        <option value="neurologia">Neurologia</option>
+                                        <option value="alergologia">Alergologia e Imunologia</option>
+                                        <option value="urologia">Urologia</option>
+                                        <option value="ginecologia">Ginecologia</option>
+                                        <option value="radiologia">Radiologia</option>
+                                    </select>
+                                </div>
+
+                                <div class="form-group">
+                                    <label>Tipo de Consulta</label>
+                                    <select id="consultaType" class="form-control">
+                                        <option value="">Selecione...</option>
+                                        <option value="rotina">Consulta de Rotina</option>
+                                        <option value="retorno">Retorno</option>
+                                        <option value="urgencia">Urgência</option>
+                                    </select>
+                                </div>
+
+                                <div class="form-group">
+                                    <label>Modalidade</label>
+                                    <div class="radio-options">
+                                        <label class="radio-box active" id="radioPresencial">
+                                            <input type="radio" name="modalidade" value="presencial" checked>
+                                            <span>Presencial</span>
+                                        </label>
+                                        <label class="radio-box" id="radioTeleconsulta">
+                                            <input type="radio" name="modalidade" value="teleconsulta">
+                                            <span>Teleconsulta</span>
+                                        </label>
+                                    </div>
+                                </div>
+
+                                <div class="form-row">
+                                    <div class="form-group">
+                                        <label>Data</label>
+                                        <input type="date" id="consultaDate" class="form-control">
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Horário</label>
+                                        <input type="time" id="consultaTime" class="form-control">
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="form-step" id="step2">
+                                <div class="step-header-row">
+                                    <h3>Selecione o Médico</h3>
+                                    <input type="text" id="searchInput" placeholder="Buscar..." class="search-input">
+                                </div>
+                                <div class="doctors-list" id="doctorsList"></div>
+                            </div>
+
+                            <div class="form-step" id="step3">
+                                <h3>Seus Dados</h3>
+                                <div class="form-group">
+                                    <label>Nome Completo</label>
+                                    <input type="text" id="patientName" class="form-control"
+                                        placeholder="Digite seu nome">
+                                </div>
+                                <div class="form-row">
+                                    <div class="form-group">
+                                        <label>CPF</label>
+                                        <input type="text" id="patientCPF" class="form-control"
+                                            placeholder="000.000.000-00" maxlength="14">
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Telefone</label>
+                                        <input type="tel" id="patientPhone" class="form-control"
+                                            placeholder="(00) 00000-0000" maxlength="15">
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Data de Nascimento</label>
+                                        <input type="text" id="patientDate" class="form-control"
+                                            placeholder="00/00/0000" maxlength="10">
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Sexo Biológico</label>
+                                        <select id="patientSex" class="form-control">
+                                            <option value="">Selecione...</option>
+                                            <option value="masculino">Masculino</option>
+                                            <option value="feminino">Feminino</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label>Email</label>
+                                    <input type="email" id="patientEmail" class="form-control"
+                                        placeholder="seu@email.com">
+                                </div>
+                                <div class="form-group">
+                                    <label>Observações (Opcional)</label>
+                                    <textarea id="observations" class="form-control" rows="3"
+                                        placeholder="Alguma observação?"></textarea>
+                                </div>
+                            </div>
+
+                            <div class="form-actions">
+                                <button class="btn btn-secondary" id="prevBtn" disabled>← Voltar</button>
+                                <button class="btn btn-primary" id="nextBtn">Próximo →</button>
+                                <button class="btn btn-success" id="submitBtn" style="display: none;">Prosseguir
+                                    ✓</button>
+                            </div>
+                        </div>
+
+                    </div>
+                </section>
+            </div>
 
             <section class="page-content">
                 <div class="container">
@@ -162,132 +308,121 @@
                     <div class="content-grid">
                         <div class="content-card">
                             <i class="fas fa-heartbeat"></i>
-                            <h3>📈 Cardiologia</h3>
+                            <h3>Cardiologia</h3>
                             <p>Cuidados especializados para a saúde do seu coração.</p>
                         </div>
 
                         <div class="content-card">
                             <i class="fas fa-brain"></i>
-                            <h3>🧠 Neurologia</h3>
+                            <h3>Neurologia</h3>
                             <p>Diagnóstico e tratamento de doenças neurológicas.</p>
                         </div>
 
                         <div class="content-card">
                             <i class="fas fa-bone"></i>
-                            <h3>🦴 Ortopedia</h3>
+                            <h3>Ortopedia</h3>
                             <p>Especialistas em ossos, músculos e articulações.</p>
                         </div>
 
                         <div class="content-card">
                             <i class="fas fa-bone"></i>
-                            <h3>🧪 Alergologia e Imunologia</h3>
+                            <h3>Alergologia e Imunologia</h3>
                             <p>Diagnóstico e tratamento de alergias e doenças do sistema imunológico.</p>
                         </div>
 
                         <div class="content-card">
                             <i class="fas fa-bone"></i>
-                            <h3>🩸 Angiologia</h3>
+                            <h3>Angiologia</h3>
                             <p>Tratamento clínico de doenças das veias e artérias.</p>
                         </div>
 
                         <div class="content-card">
                             <i class="fas fa-bone"></i>
-                            <h3>🏥 Cirurgia Cardiovascular</h3>
+                            <h3>Cirurgia Cardiovascular</h3>
                             <p>Cirurgias do coração e grandes vasos.</p>
                         </div>
-
                         <div class="content-card">
                             <i class="fas fa-bone"></i>
-                            <h3>📋 Clínica Médica</h3>
-                            <p>Atendimento geral e contínuo para diversas condições de saúde.</p>
-                        </div>
-                        <div class="content-card">
-                            <i class="fas fa-bone"></i>
-                            <h3>✨ Dermatologia</h3>
+                            <h3>Dermatologia</h3>
                             <p>Cuidado da pele, unhas e cabelos.</p>
                         </div>
                         <div class="content-card">
                             <i class="fas fa-bone"></i>
-                            <h3>🔬 Endocrinologia</h3>
+                            <h3>Endocrinologia</h3>
                             <p>Tratamento de doenças hormonais e metabólicas.</p>
                         </div>
                         <div class="content-card">
                             <i class="fas fa-bone"></i>
-                            <h3>🍽️ Gastroenterologia</h3>
-                            <p>Diagnóstico e tratamento de doenças do sistema digestivo.</p>
-                        </div>
-                        <div class="content-card">
-                            <i class="fas fa-bone"></i>
-                            <h3>🌸 Ginecologia</h3>
+                            <h3>Ginecologia</h3>
                             <p>Saúde da mulher, sistema reprodutor e acompanhamento ginecológico.</p>
                         </div>
                         <div class="content-card">
                             <i class="fas fa-bone"></i>
-                            <h3>👵 Geriatria</h3>
+                            <h3>Geriatria</h3>
                             <p>Cuidado integral da saúde do idoso.</p>
                         </div>
                         <div class="content-card">
                             <i class="fas fa-bone"></i>
-                            <h3>🧬 Hematologia</h3>
+                            <h3>Hematologia</h3>
                             <p>Doenças do sangue e da medula óssea.</p>
                         </div>
                         <div class="content-card">
                             <i class="fas fa-bone"></i>
-                            <h3>🟤 Hepatologia</h3>
+                            <h3>Hepatologia</h3>
                             <p>Tratamento especializado do fígado e vias biliares.</p>
                         </div>
                         <div class="content-card">
                             <i class="fas fa-bone"></i>
-                            <h3>🦠 Infectologia</h3>
+                            <h3>Infectologia</h3>
                             <p>Diagnóstico e tratamento de doenças infecciosas.</p>
                         </div>
                         <div class="content-card">
                             <i class="fas fa-bone"></i>
-                            <h3>🖥️ Radiologia</h3>
+                            <h3>Radiologia</h3>
                             <p>Diagnóstico por imagem, como raio-X, tomografia e ressonância.</p>
                         </div>
                         <div class="content-card">
                             <i class="fas fa-bone"></i>
-                            <h3>🤲 Reumatologia</h3>
+                            <h3>Reumatologia</h3>
                             <p>Tratamento de doenças das articulações e tecidos conjuntivos.</p>
                         </div>
                         <div class="content-card">
                             <i class="fas fa-bone"></i>
-                            <h3>🚹 Urologia</h3>
+                            <h3>Urologia</h3>
                             <p>Saúde do trato urinário e do sistema reprodutor masculino.</p>
                         </div>
                         <div class="content-card">
                             <i class="fas fa-bone"></i>
-                            <h3>🧘 Psiquiatria</h3>
+                            <h3>Psiquiatria</h3>
                             <p>Tratamento de condições mentais e emocionais.</p>
                         </div>
                         <div class="content-card">
                             <i class="fas fa-bone"></i>
-                            <h3>🌬️ Pneumologia</h3>
+                            <h3>Pneumologia</h3>
                             <p>Doenças do pulmão e sistema respiratório.</p>
                         </div>
                         <div class="content-card">
                             <i class="fas fa-bone"></i>
-                            <h3>👶 Pediatria</h3>
+                            <h3>Pediatria</h3>
                             <p>Cuidado da saúde de bebês, crianças e adolescentes.</p>
                         </div>
                         <div class="content-card">
                             <i class="fas fa-bone"></i>
-                            <h3>👂 Otorrinolaringologia (ORL)</h3>
+                            <h3>Otorrinolaringologia (ORL)</h3>
                             <p>Tratamento de doenças do ouvido, nariz e garganta.</p>
                         </div>
                         <div class="content-card">
                             <i class="fas fa-bone"></i>
-                            <h3>💧 Nefrologia</h3>
+                            <h3>Nefrologia</h3>
                             <p>Tratamento de doenças dos rins.</p>
                         </div>
                         <div class="content-card">
                             <i class="fas fa-bone"></i>
-                            <h3>👁️ Oftalmologia</h3>
+                            <h3>Oftalmologia</h3>
                             <p>Cuidado da visão e saúde ocular.</p>
                         </div>
 
-                </div>
+                    </div>
             </section>
         </div>
 
@@ -297,7 +432,7 @@
                 <div class="container">
                     <h1>Exames Médicos</h1>
                     <p>Realize seus exames aqui!</p> <br>
-                    <a href="#" onclick="showPage('agendamentoex')">Agendar exame</a>
+                    <a href="#" onclick="showPage('')">Agendar exame</a>
                 </div>
             </section>
 
@@ -306,77 +441,78 @@
                     <div class="content-grid">
                         <div class="content-card">
                             <i class="fas fa-x-ray"></i>
-                            <h3>📷 Exames de Imagem</h3>
+                            <h3>Exames de Imagem</h3>
                             <p>Radiografia, ultrassom, tomografia e ressonância magnética.</p>
                         </div>
 
                         <div class="content-card">
                             <i class="fas fa-vial"></i>
-                            <h3>🧪 Exames Laboratoriais</h3>
+                            <h3>Exames Laboratoriais</h3>
                             <p>Análises clínicas completas com resultados precisos.</p>
                         </div>
 
                         <div class="content-card">
                             <i class="fas fa-procedures"></i>
-                            <h3>❤️ Exames Cardiológicos</h3>
+                            <h3>Exames Cardiológicos</h3>
                             <p>Avaliações completas do coração para monitorar e prevenir doenças cardiovasculares.</p>
                         </div>
 
                         <div class="content-card">
                             <i class="fas fa-procedures"></i>
-                            <h3>🧠 Exames Neurológicos</h3>
+                            <h3>Exames Neurológicos</h3>
                             <p>Investigação precisa do sistema nervoso para diagnósticos de alterações cerebrais e
                                 neurológicas.</p>
                         </div>
 
                         <div class="content-card">
                             <i class="fas fa-procedures"></i>
-                            <h3>🧫 Exames Endócrinos</h3>
+                            <h3>Exames Endócrinos</h3>
                             <p>Análises hormonais detalhadas para avaliação do metabolismo e regulação hormonal do
                                 organismo.</p>
                         </div>
 
                         <div class="content-card">
                             <i class="fas fa-procedures"></i>
-                            <h3>🩺 Exames Preventivos</h3>
+                            <h3>Exames Preventivos</h3>
                             <p>Avaliações periódicas para detecção precoce de doenças e manutenção da saú</p>
                         </div>
 
                         <div class="content-card">
                             <i class="fas fa-procedures"></i>
-                            <h3>👁️ Exames Oftalmológicos</h3>
+                            <h3>Exames Oftalmológicos</h3>
                             <p>Diagnósticos completos da visão e saúde ocular com equipamentos de alta precisão.</p>
                         </div>
 
                         <div class="content-card">
                             <i class="fas fa-procedures"></i>
-                            <h3>🌬️ Exames Respiratórios</h3>
+                            <h3>Exames Respiratórios</h3>
                             <p>Avaliações da função pulmonar e diagnóstico de doenças respiratórias.</p>
                         </div>
 
                         <div class="content-card">
                             <i class="fas fa-procedures"></i>
-                            <h3>🦠 Exames Infecciosos</h3>
+                            <h3>Exames Infecciosos</h3>
                             <p>Testes específicos para detecção de vírus, bactérias e doenças transmissíveis.</p>
                         </div>
 
                         <div class="content-card">
                             <i class="fas fa-procedures"></i>
-                            <h3>👂 Exames Otorrinolaringológicos</h3>
-                            <p>Avaliações do ouvido, nariz e garganta para diagnóstico de alterações auditivas e respiratórias.</p>
+                            <h3>Exames Otorrinolaringológicos</h3>
+                            <p>Avaliações do ouvido, nariz e garganta para diagnóstico de alterações auditivas e
+                                respiratórias.</p>
                         </div>
 
                         <div class="content-card">
                             <i class="fas fa-procedures"></i>
-                            <h3>🧍‍♂️ Exames Urológicos</h3>
+                            <h3>Exames Urológicos</h3>
                             <p>Avaliações do sistema urinário e saúde masculina com foco preventivo e diagnóstico.</p>
                         </div>
 
                         <div class="content-card">
                             <i class="fas fa-procedures"></i>
-                            <h3>👶 Exames Ginecológicos e Obstétricos</h3>
+                            <h3>Exames Ginecológicos e Obstétricos</h3>
                             <p>Monitoramento da saúde da mulher, prevenção e acompanhamento da gestação.</p>
-                        </div> 
+                        </div>
                     </div>
                 </div>
             </section>
@@ -419,42 +555,42 @@
     </main>
 
     <!-- Rodapé -->
-        <footer id="footermain" class="footer">
-            <div class="container">
-                <div class="footer-content">
-                    <div class="footer-section">
-                        <div class="footer-logo">
-                            <i class="fas fa-stethoscope"></i>
-                            <span>Vittae</span>
-                        </div>
-                        <p>Sistema de Agendamento Médico</p>
+    <footer id="footermain" class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <div class="footer-logo">
+                        <i class="fas fa-stethoscope"></i>
+                        <span>Vittae</span>
                     </div>
-
-                    <div class="footer-section">
-                        <h4>Links Rápidos</h4>
-                        <ul>
-                            <li><a href="#" onclick="showPage('consultas')">Consultas</a></li>
-                            <li><a href="#" onclick="showPage('especialidades')">Especialidades</a></li>
-                            <li><a href="#" onclick="showPage('exames')">Exames</a></li>
-                            <li><a href="#" onclick="showPage('sobre-nos')">Sobre nós</a></li>
-                        </ul>
-                    </div>
-
-                    <div class="footer-section">
-                        <h4>Contato</h4>
-                        <ul>
-                            <li><i class="fas fa-phone"></i> (11) 91130-4354</li>
-                            <li><i class="fas fa-envelope"></i> vittaemedicine@gmail.com</li>
-                            <li><i class="fas fa-map-marker-alt"></i> Salto, SP</li>
-                        </ul>
-                    </div>
+                    <p>Sistema de Agendamento Médico</p>
                 </div>
 
-                <div class="footer-bottom">
-                    <p>&copy; 2025 Vittae.</p>
+                <div class="footer-section">
+                    <h4>Links Rápidos</h4>
+                    <ul>
+                        <li><a href="#" onclick="showPage('consultas')">Consultas</a></li>
+                        <li><a href="#" onclick="showPage('especialidades')">Especialidades</a></li>
+                        <li><a href="#" onclick="showPage('exames')">Exames</a></li>
+                        <li><a href="#" onclick="showPage('sobre-nos')">Sobre nós</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-section">
+                    <h4>Contato</h4>
+                    <ul>
+                        <li><i class="fas fa-phone"></i> (11) 91130-4354</li>
+                        <li><i class="fas fa-envelope"></i> vittaemedicine@gmail.com</li>
+                        <li><i class="fas fa-map-marker-alt"></i> Salto, SP</li>
+                    </ul>
                 </div>
             </div>
-        </footer>
+
+            <div class="footer-bottom">
+                <p>&copy; 2026 Vittae.</p>
+            </div>
+        </div>
+    </footer>
 
     <script src="/js/script.js"></script>
 </body>

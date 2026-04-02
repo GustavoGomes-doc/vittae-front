@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vittae - Login</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="../css/loginstyle.css">
+    <link rel="shortcut icon" href="../imagens/facvicon VITTAE.png" type="image/x-icon">
+</head>
+<body>
+
+    <section class="container-pai" id="mainContainer">
+        
+        <div class="forms-content-container">
+            
+            <div class="form-content sign-in" id="loginBlock">
+                <form>
+                    <h2>Acesse sua Conta</h2>
+                    <p class="subtitle">Bem-vindo de volta ao Vittae!</p>
+                    
+                    <div class="input-field">
+                        <i class="fas fa-id-card"></i>
+                        <input type="text" placeholder="CPF (000.000.000-00)" required>
+                    </div>
+                    
+                    <div class="input-field">
+                        <i class="fas fa-lock"></i>
+                        <input type="password" placeholder="Sua Senha" required>
+                    </div>
+                    
+                    <a href="#" class="forgot-pass">Esqueceu sua senha?</a>
+                    
+                    <button type="submit" class="btn-main">Entrar</button>
+                    
+                    <div class="footer-copy">
+                        <p>&copy; 2026 Vittae.</p>
+                    </div>
+                </form>
+            </div>
+
+            <div class="form-content sign-up" id="registerBlock">
+                <form>
+                    <h2>Criar Conta</h2>
+                    <p class="subtitle">Cadastre-se para agendar suas consultas.</p>
+                    
+                    <div class="input-field">
+                        <i class="fas fa-user"></i>
+                        <input type="text" placeholder="Nome Completo" required>
+                    </div>
+                    
+                    <div class="input-field">
+                        <i class="fas fa-envelope"></i>
+                        <input type="email" placeholder="E-mail" required>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="input-field">
+                            <i class="fas fa-id-card"></i>
+                            <input type="text" placeholder="CPF" required>
+                        </div>
+                        <div class="input-field">
+                            <i class="fas fa-phone"></i>
+                            <input type="text" placeholder="Telefone" required>
+                        </div>
+                    </div>
+                    
+                    <div class="input-field">
+                        <i class="fas fa-lock"></i>
+                        <input type="password" placeholder="Senha" required>
+                    </div>
+                    
+                    <button type="submit" class="btn-main">Cadastrar Agora</button>
+                </form>
+            </div>
+        </div>
+
+        <div class="overlay-panel-container">
+            <div class="overlay">
+                
+                <div class="overlay-section overlay-left">
+                    <h2>Já tem uma conta?</h2>
+                    <p>Acesse seu painel agora mesmo e continue cuidando da sua saúde.</p>
+                    <button class="btn-outline" id="signInBtn">Fazer Login</button>
+                </div>
+                
+                <div class="overlay-section overlay-right">
+                    <h2>Novo por aqui?</h2>
+                    <p>Crie sua conta em segundos e agende suas consultas com total praticidade.</p>
+                    <button class="btn-outline" id="signUpBtn">Criar Conta</button>
+                </div>
+                
+            </div>
+        </div>
+
+    </section>
+
+    <script src="../js/login.js" defer></script>
+</body>
+</html>

@@ -1,10 +1,8 @@
 (function () {
     "use strict";
 
-    // Dados dos médicos
     let doctors = [];
 
-    // Estado da aplicação
     let currentStep = 1;
     let selectedDoctor = null;
     const formData = {
@@ -20,17 +18,15 @@
         observations: ""
     };
 
-    // Buscar médicos no Spring Boot
+    // buscar médicos no Spring Boot
     async function fetchDoctors() {
         const list = document.getElementById("doctorsList");
 
-        // Mostra uma mensagem de carregamento enquanto aguarda o Java
         if (list) {
             list.innerHTML = '<p style="text-align:center;color:#718096;padding:40px;grid-column:1/-1;">Carregando lista de médicos...</p>';
         }
 
         try {
-            // Altere para a rota correta da sua API
             const response = await fetch("http://localhost:8081/api/medicos");
 
             if (!response.ok) {
@@ -39,21 +35,17 @@
 
             const data = await response.json();
 
-            // Mapeando os dados do Java para o formato que seu frontend já entende.
-            // Dica: ajuste "medico.nome", "medico.especialidade" de acordo com os atributos da sua classe Java.
             doctors = data.map(function (medico) {
                 return {
                     id: medico.id,
-                    name: medico.nome, // ou medico.name, dependendo do Java
+                    name: medico.nome, 
                     specialty: medico.especialidade,
-                    location: medico.localizacao || "Consultório Vittae", // Valor padrão se não vier do banco
+                    location: medico.localizacao || "Consultório Vittae",
                     rating: medico.avaliacao || 5.0,
-                    // Cria as iniciais dinamicamente
                     initials: getInitials(medico.nome)
                 };
             });
 
-            // Renderiza os médicos na tela
             renderDoctors(doctors);
 
         } catch (error) {
@@ -64,10 +56,8 @@
         }
     }
 
-    // Função para gerar as bolinhas com as letras do nome (ex: "Dr. Carlos Silva" -> "CS")
     function getInitials(nome) {
         if (!nome) return "MD";
-        // Remove os prefixos Dr. ou Dra.
         const cleanName = nome.replace(/Dr\.|Dra\./g, "").trim();
         const parts = cleanName.split(" ");
         if (parts.length >= 2) {
@@ -76,17 +66,15 @@
         return cleanName.substring(0, 2).toUpperCase();
     }
 
-    // Inicialização quando o DOM estiver pronto
     async function init() {
         setupEventListeners();
         setMinDate();
         updateProgressBar();
 
-        // Busca os médicos do backend e já renderiza na tela
+        // busca os médicos do backend e já renderiza na tela
         await fetchDoctors();
     }
 
-    // Configurar todos os event listeners
     function setupEventListeners() {
         const prevBtn = document.getElementById("prevBtn");
         const nextBtn = document.getElementById("nextBtn");
@@ -104,7 +92,7 @@
         if (resetBtn) resetBtn.addEventListener("click", resetForm);
         if (searchInput) searchInput.addEventListener("input", searchDoctors);
 
-        // Radio buttons modalidade
+        
         if (radioPresencial) {
             radioPresencial.addEventListener("click", function () {
                 radioPresencial.classList.add("active");
@@ -121,7 +109,7 @@
             });
         }
 
-        // Auto-format CPF
+        
         if (cpfInput) {
             cpfInput.addEventListener("input", function (e) {
                 let value = e.target.value.replace(/\D/g, "");
@@ -134,7 +122,7 @@
             });
         }
 
-        // Auto-format Telefone
+        
         if (phoneInput) {
             phoneInput.addEventListener("input", function (e) {
                 let value = e.target.value.replace(/\D/g, "");
@@ -147,7 +135,7 @@
         }
     }
 
-    // Definir data mínima como hoje
+    
     function setMinDate() {
         const dateInput = document.getElementById("consultaDate");
         if (dateInput) {
@@ -156,7 +144,7 @@
         }
     }
 
-    // Atualizar barra de progresso
+    
     function updateProgressBar() {
         const progress = ((currentStep - 1) / 2) * 100;
         const progressBar = document.getElementById("progressBar");
@@ -164,7 +152,7 @@
             progressBar.style.width = progress + "%";
         }
 
-        // Atualizar círculos
+        
         for (let i = 1; i <= 3; i++) {
             const circle = document.getElementById("circle" + i);
             if (!circle) continue;
@@ -184,7 +172,7 @@
         }
     }
 
-    // Mostrar step específico
+    
     function showStep(step) {
         const allSteps = document.querySelectorAll(".form-step");
         allSteps.forEach(function (el) {
@@ -200,7 +188,7 @@
         const nextBtn = document.getElementById("nextBtn");
         const submitBtn = document.getElementById("submitBtn");
 
-        // Atualizar botões
+        
         if (prevBtn) {
             prevBtn.disabled = step === 1;
         }
@@ -216,7 +204,7 @@
         updateProgressBar();
     }
 
-    // Validar step atual
+    
     function validateCurrentStep() {
         if (currentStep === 1) {
             const typeEl = document.getElementById("consultaType");
@@ -291,7 +279,7 @@
         return true;
     }
 
-    // Próximo step
+    
     function nextStep() {
         if (validateCurrentStep() && currentStep < 3) {
             currentStep++;
@@ -299,7 +287,7 @@
         }
     }
 
-    // Step anterior
+    
     function previousStep() {
         if (currentStep > 1) {
             currentStep--;
@@ -307,7 +295,7 @@
         }
     }
 
-    // Renderizar lista de médicos
+    
     function renderDoctors(doctorsArray) {
         const list = document.getElementById("doctorsList");
         if (!list) return;
@@ -348,7 +336,7 @@
         });
     }
 
-    // Selecionar médico
+    
     function selectDoctor(doctor) {
         selectedDoctor = doctor;
 
@@ -357,7 +345,7 @@
             card.classList.remove("selected");
         });
 
-        // Encontrar e selecionar o card clicado
+       
         allCards.forEach(function (card) {
             const h4 = card.querySelector("h4");
             if (h4 && h4.textContent === doctor.name) {
@@ -366,7 +354,7 @@
         });
     }
 
-    // Buscar médicos
+
     function searchDoctors() {
         const searchInput = document.getElementById("searchInput");
         if (!searchInput) return;
@@ -388,31 +376,29 @@
     }
 
 
-    // Submeter formulário integrado com Spring Boot
     async function submitForm() {
         if (!validateCurrentStep()) return;
 
-        // Captura o botão para dar feedback visual (loading)
+        
         const submitBtn = document.getElementById("submitBtn");
         const originalBtnText = submitBtn.innerText;
 
         try {
-            // Desativa o botão temporariamente
+    
             if (submitBtn) {
                 submitBtn.innerText = "Enviando...";
                 submitBtn.disabled = true;
             }
 
-            // 1. Monta o objeto que o Spring Boot vai receber (Ajuste os nomes conforme sua classe Java)
+            
             const agendamentoDTO = {
                 tipoConsulta: formData.consultaType,
                 modalidade: formData.modalidade,
-                dataConsulta: formData.date, // Padrão 'YYYY-MM-DD'
-                horarioConsulta: formData.time, // Padrão 'HH:MM'
-                medicoId: selectedDoctor.id, // Envia apenas o ID do médico
+                dataConsulta: formData.date, 
+                horarioConsulta: formData.time, 
+                medicoId: selectedDoctor.id, 
                 paciente: {
                     nome: formData.patientName,
-                    // Remove pontos e traços para salvar limpo no banco
                     cpf: formData.patientCPF.replace(/\D/g, ""),
                     email: formData.patientEmail,
                     telefone: formData.patientPhone.replace(/\D/g, "")
@@ -420,10 +406,8 @@
                 observacoes: formData.observations
             };
 
-            // 2. Define a URL do seu backend Spring Boot
-            const apiUrl = "http://localhost:8080/api/agendamentos";
+            const apiUrl = "http://localhost:8081/api/agendamentos";
 
-            // 3. Dispara a requisição HTTP POST
             const response = await fetch(apiUrl, {
                 method: "POST",
                 headers: {
@@ -432,11 +416,8 @@
                 body: JSON.stringify(agendamentoDTO)
             });
 
-            // 4. Analisa a resposta do Spring Boot
             if (response.ok) {
-                // SUCESSO (Status 200 ou 201)
 
-                // Preencher o resumo visual no modal (seu código original)
                 const summaryDoctor = document.getElementById("summaryDoctor");
                 const summaryDate = document.getElementById("summaryDate");
                 const summaryMode = document.getElementById("summaryMode");
@@ -455,25 +436,21 @@
                     summaryMode.textContent = formData.modalidade.charAt(0).toUpperCase() + formData.modalidade.slice(1);
                 }
 
-                // Exibir o modal de sucesso
+
                 const successModal = document.getElementById("successModal");
                 if (successModal) {
                     successModal.classList.add("show");
                 }
 
             } else {
-                // ERRO (Status 400, 500, etc.)
-                // Opcional: tentar extrair a mensagem de erro da API
-                // const erro = await response.json(); 
+                const erro = await response.json(); 
                 alert("Não foi possível realizar o agendamento. Verifique os dados.");
             }
 
         } catch (error) {
-            // Cai aqui se o servidor estiver offline, etc.
             console.error("Erro na requisição:", error);
             alert("Erro de conexão com o servidor. O back-end está rodando?");
         } finally {
-            // Restaura o botão ao normal indepentende de sucesso ou falha
             if (submitBtn) {
                 submitBtn.innerText = originalBtnText;
                 submitBtn.disabled = false;
@@ -481,12 +458,11 @@
         }
     }
 
-    // Resetar formulário
     function resetForm() {
         currentStep = 1;
         selectedDoctor = null;
 
-        // Resetar objeto formData
+
         formData.consultaType = "";
         formData.modalidade = "presencial";
         formData.date = "";
@@ -498,7 +474,6 @@
         formData.patientPhone = "";
         formData.observations = "";
 
-        // Resetar campos do formulário
         const elements = {
             consultaType: document.getElementById("consultaType"),
             consultaDate: document.getElementById("consultaDate"),
@@ -515,7 +490,6 @@
             if (elements[key]) elements[key].value = "";
         });
 
-        // Resetar modalidade
         const radioPresencial = document.getElementById("radioPresencial");
         const radioTeleconsulta = document.getElementById("radioTeleconsulta");
         if (radioPresencial) radioPresencial.classList.add("active");
@@ -530,7 +504,6 @@
         }
     }
 
-    // Inicializar quando o DOM estiver pronto
     if (document.readyState === "loading") {
         document.addEventListener("DOMContentLoaded", init);
     } else {

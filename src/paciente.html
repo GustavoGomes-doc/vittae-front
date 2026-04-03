@@ -46,7 +46,7 @@
                 <div class="user-info">
                     <div class="notifications">
                         <i class="fas fa-bell"></i>
-                        <span class="badge">2</span>
+                        <span class="badge">9+</span>
                     </div>
                     <img src="https://ui-avatars.com/api/?name=Paciente+Exemplo&background=7c3aed&color=fff" alt="Avatar">
                 </div>
@@ -99,21 +99,100 @@
             </section>
 
             <section id="agendar" class="content-section">
-                <h2>Buscar Médicos Disponíveis</h2>
-                <div class="doctors-grid">
-                    <div class="doctor-card">
-                        <img src="https://i.pravatar.cc/150?u=dr1" alt="Médico">
-                        <h3>Dr. Carlos Silva</h3>
-                        <p>Clínico Geral</p>
-                        <div class="rating"><i class="fas fa-star"></i> 4.9</div>
-                        <button class="btn-main" onclick="abrirAgendamento('Carlos Silva')">Agendar</button>
+    
+                <div class="appointment-container">
+                    <div class="appointment-header">
+                        <h2>Agendamento de Consulta</h2>
                     </div>
-                    <div class="doctor-card">
-                        <img src="https://i.pravatar.cc/150?u=dr2" alt="Médico">
-                        <h3>Dra. Ana Costa</h3>
-                        <p>Dermatologista</p>
-                        <div class="rating"><i class="fas fa-star"></i> 5.0</div>
-                        <button class="btn-main" onclick="abrirAgendamento('Ana Costa')">Agendar</button>
+            
+                    <div class="progress-wrapper">
+                        <div class="progress-steps">
+                            <div class="step-item">
+                                <div class="step-circle active" id="circle1"><span>1</span></div>
+                                <span class="step-label">Consulta</span>
+                            </div>
+                            <div class="step-item">
+                                <div class="step-circle" id="circle2"><span>2</span></div>
+                                <span class="step-label">Médico</span>
+                            </div>
+                            <div class="step-item">
+                                <div class="step-circle" id="circle3"><span>3</span></div>
+                                <span class="step-label">Dados</span>
+                            </div>
+                        </div>
+                        <div class="progress-line">
+                            <div class="progress-fill" id="progressBar"></div>
+                        </div>
+                    </div> <br>
+            
+                    <div class="form-step active" id="step1">
+                        <h3>Dados da Consulta</h3>
+                        <div class="form-group">
+                            <label>Especialidade da consulta</label>
+                            <select id="especialidadeType" class="form-control">
+                                <option value="">Selecione...</option>
+                                <option value="cardiologia">Cardiologia</option>
+                                <option value="neurologia">Neurologia</option>
+                                <option value="alergologia">Alergologia e Imunologia</option>
+                                <option value="urologia">Urologia</option>
+                                <option value="ginecologia">Ginecologia</option>
+                                <option value="radiologia">Radiologia</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label>Tipo de Consulta</label>
+                            <select id="consultaType" class="form-control">
+                                <option value="">Selecione...</option>
+                                <option value="rotina">Consulta de Rotina</option>
+                                <option value="retorno">Retorno</option>
+                                <option value="urgencia">Urgência</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label>Modalidade</label>
+                            <div class="radio-options">
+                                <label class="radio-box active" id="radioPresencial">
+                                    <input type="radio" name="modalidade" value="presencial" checked>
+                                    <span>Presencial</span>
+                                </label>
+                                <label class="radio-box" id="radioTeleconsulta">
+                                    <input type="radio" name="modalidade" value="teleconsulta">
+                                    <span>Teleconsulta</span>
+                                </label>
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label>Data</label>
+                                <input type="date" id="consultaDate" class="form-control">
+                            </div>
+                            <div class="form-group">
+                                <label>Horário</label>
+                                <input type="time" id="consultaTime" class="form-control">
+                            </div>
+                        </div>
+                    </div>
+            
+                    <div class="form-step" id="step2">
+                        <div class="step-header-row">
+                            <h3>Selecione o Médico</h3>
+                            <input type="text" id="searchInput" placeholder="Buscar..." class="search-input">
+                        </div>
+                        <div class="doctors-list" id="doctorsList"></div>
+                    </div>
+            
+                    <div class="form-step" id="step3">
+                        <h3>Seus Dados</h3>
+                        <div class="form-group">
+                            <label>Email</label>
+                            <input type="email" id="patientEmail" class="form-control" placeholder="seu@email.com">
+                        </div>
+                    </div>
+            
+                    <div class="form-actions">
+                        <button class="btn btn-secondary" id="prevBtn" disabled>← Voltar</button>
+                        <button class="btn btn-primary" id="nextBtn">Próximo →</button>
+                        <button class="btn btn-success" id="submitBtn" style="display: none;">Prosseguir ✓</button>
                     </div>
                 </div>
             </section>
@@ -122,5 +201,6 @@
     </div>
 
     <script src="../js/paciente.js"></script>
+    <script src="../js/agendamento.js"></script>
 </body>
 </html>

@@ -1,69 +1,74 @@
+// Aguarda o HTML carregar completamente
 document.addEventListener('DOMContentLoaded', () => {
     const navItems = document.querySelectorAll('.nav-item');
     const sections = document.querySelectorAll('.content-section');
 
+    // 1. Lógica para trocar de abas
     navItems.forEach(item => {
-        item.addEventListener('click', function(e) {
+        item.addEventListener('click', function (e) {
             e.preventDefault();
-            
-            // 1. Remove classes ativas do menu
-            navItems.forEach(i => i.classList.remove('active'));
-            this.classList.add('active');
 
-            // 2. Troca a seção visível
             const target = this.getAttribute('data-target');
-            sections.forEach(section => {
-                section.classList.remove('active');
-                if (section.id === target) {
-                    section.classList.add('active');
-                }
-            });
 
-            // 3. SE CLICAR NA ABA DE AGENDAR, CARREGA OS MÉDICOS DO BANCO
+            // Remove 'active' de tudo
+            navItems.forEach(i => i.classList.remove('active'));
+            sections.forEach(s => s.classList.remove('active'));
+
+            // Ativa o item e a seção correta
+            this.classList.add('active');
+            const targetSection = document.getElementById(target);
+            if (targetSection) {
+                targetSection.classList.add('active');
+            }
+
+            // Se clicar em agendar, recarrega a lista para garantir dados novos
             if (target === 'agendar') {
                 carregarMedicos();
             }
         });
     });
+
+    // 2. Carregamento inicial (executa assim que a página abre)
+    carregarMedicos();
 });
 
-// FUNÇÃO QUE BUSCA OS MÉDICOS NO SEU JAVA
+// 3. Função para buscar médicos no Back-end
 async function carregarMedicos() {
+    const container = document.getElementById('lista-medicos');
+    if (!container) return; // Segurança caso a div não exista
+
     try {
-        // Bate na porta 8081 do seu Spring Boot
-        const resposta = await fetch('http://localhost:8081/api/medicos');
-        const medicos = await resposta.json();
-        
-        // Pega a div do seu HTML que tem os cards dos médicos
-        const grid = document.querySelector('.doctors-grid');
-        grid.innerHTML = ''; // Limpa os médicos ilustrativos (Carlos e Ana)
+        const response = await fetch('http://localhost:8080/api/medicos');
+        const medicos = await response.json();
 
-        if (medicos.length === 0) {
-            grid.innerHTML = '<p>Nenhum médico cadastrado no sistema ainda.</p>';
-            return;
-        }
+        console.log("Médicos recebidos do Java:", medicos);
 
-        // Para cada médico do banco, cria um card com o SEU HTML E CSS
+        container.innerHTML = ''; // Limpa o que tinha antes
+
         medicos.forEach(medico => {
-            // Dica: Usei uma API gratuita de avatares para gerar imagens com as iniciais do médico!
-            const card = `
-                <div class="doctor-card">
-                    <img src="https://ui-avatars.com/api/?name=${medico.nome}&background=random&color=fff" alt="Médico">
-                    <h3>Dr(a). ${medico.nome}</h3>
-                    <p>${medico.especialidade}</p>
+            // Garante que o nome e a especialidade tenham um texto padrão
+            const nomeMedico = medico.nome || "Médico Indisponível";
+            const especialidade = (medico.especialidades && medico.especialidades.length > 0) 
+                                  ? medico.especialidades[0].nome 
+                                  : "Clínico Geral";
+        
+            const cardHTML = `
+                <div class="doctor-card" style="border: 2px solid purple;"> <img src="https://i.pravatar.cc/150?u=${medico.id}" alt="Médico">
+                    <h3>${nomeMedico}</h3>
+                    <p>${especialidade}</p> 
                     <div class="rating"><i class="fas fa-star"></i> 5.0</div>
-                    <button class="btn-main" onclick="abrirAgendamento('${medico.nome}')">Agendar</button>
+                    <button class="btn-main">Agendar</button>
                 </div>
             `;
-            grid.innerHTML += card;
+            container.innerHTML += cardHTML;
         });
 
     } catch (erro) {
-        console.error("Erro ao buscar os médicos. O servidor Java está ligado?", erro);
+        console.error("Erro ao carregar médicos:", erro);
     }
 }
 
 function abrirAgendamento(medico) {
     alert(`Abrindo calendário para agendar com: Dr(a). ${medico}`);
-    // No futuro, ao invés de um alert, isso vai abrir a sua tela de etapas!
 }
+

@@ -1,5 +1,3 @@
-
-// Page Navigation System
 function showPage(pageId) {
     // Hide all pages
     const pages = document.querySelectorAll('.page');

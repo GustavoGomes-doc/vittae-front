@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,6 +8,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="../css/paciente.css">
 </head>
+
 <body>
 
     <div class="dashboard-container">
@@ -15,7 +17,7 @@
                 <i class="fas fa-stethoscope"></i>
                 <span>Vittae</span>
             </div>
-            
+
             <nav class="sidebar-nav">
                 <a href="#" class="nav-item active" data-target="inicio">
                     <i class="fas fa-home"></i> Início
@@ -37,7 +39,7 @@
         </aside>
 
         <main class="main-content">
-            
+
             <header class="topbar">
                 <div class="search-bar">
                     <i class="fas fa-search"></i>
@@ -48,7 +50,8 @@
                         <i class="fas fa-bell"></i>
                         <span class="badge">9+</span>
                     </div>
-                    <img src="https://ui-avatars.com/api/?name=Paciente+Exemplo&background=7c3aed&color=fff" alt="Avatar">
+                    <img src="https://ui-avatars.com/api/?name=Paciente+Exemplo&background=7c3aed&color=fff"
+                        alt="Avatar">
                 </div>
             </header>
 
@@ -99,12 +102,12 @@
             </section>
 
             <section id="agendar" class="content-section">
-    
+
                 <div class="appointment-container">
                     <div class="appointment-header">
                         <h2>Agendamento de Consulta</h2>
                     </div>
-            
+
                     <div class="progress-wrapper">
                         <div class="progress-steps">
                             <div class="step-item">
@@ -124,7 +127,7 @@
                             <div class="progress-fill" id="progressBar"></div>
                         </div>
                     </div> <br>
-            
+
                     <div class="form-step active" id="step1">
                         <h3>Dados da Consulta</h3>
                         <div class="form-group">
@@ -148,19 +151,7 @@
                                 <option value="urgencia">Urgência</option>
                             </select>
                         </div>
-                        <div class="form-group">
-                            <label>Modalidade</label>
-                            <div class="radio-options">
-                                <label class="radio-box active" id="radioPresencial">
-                                    <input type="radio" name="modalidade" value="presencial" checked>
-                                    <span>Presencial</span>
-                                </label>
-                                <label class="radio-box" id="radioTeleconsulta">
-                                    <input type="radio" name="modalidade" value="teleconsulta">
-                                    <span>Teleconsulta</span>
-                                </label>
-                            </div>
-                        </div>
+
                         <div class="form-row">
                             <div class="form-group">
                                 <label>Data</label>
@@ -172,7 +163,7 @@
                             </div>
                         </div>
                     </div>
-            
+
                     <div class="form-step" id="step2">
                         <div class="step-header-row">
                             <h3>Selecione o Médico</h3>
@@ -180,27 +171,90 @@
                         </div>
                         <div class="doctors-list" id="doctorsList"></div>
                     </div>
-            
+
                     <div class="form-step" id="step3">
                         <h3>Seus Dados</h3>
                         <div class="form-group">
-                            <label>Email</label>
-                            <input type="email" id="patientEmail" class="form-control" placeholder="seu@email.com">
+                            <label>Nome Completo</label>
+                            <input type="text" id="patientName" class="form-control" placeholder="Digite seu nome">
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label>CPF</label>
+                                <input type="text" id="patientCPF" class="form-control" placeholder="000.000.000-00"
+                                    maxlength="14">
+                            </div>
+                            <div class="form-group">
+                                <label>Telefone</label>
+                                <input type="tel" id="patientPhone" class="form-control" placeholder="(00) 00000-0000"
+                                    maxlength="15">
+                            </div>
+                            <div class="form-group">
+                                <label>Data de Nascimento</label>
+                                <input type="text" id="patientBirthDate" class="form-control" placeholder="00/00/0000"
+                                    maxlength="10">
+                            </div>
+                            <div class="form-group">
+                                <label>Sexo Biológico</label>
+                                <select id="patientSex" class="form-control">
+                                    <option value="">Selecione...</option>
+                                    <option value="masculino">Masculino</option>
+                                    <option value="feminino">Feminino</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label>Observações (Opcional)</label>
+                            <textarea id="observations" class="form-control" rows="3"
+                                placeholder="Alguma observação?"></textarea>
                         </div>
                     </div>
-            
+
                     <div class="form-actions">
                         <button class="btn btn-secondary" id="prevBtn" disabled>← Voltar</button>
                         <button class="btn btn-primary" id="nextBtn">Próximo →</button>
-                        <button class="btn btn-success" id="submitBtn" style="display: none;">Prosseguir ✓</button>
+                        <button class="btn btn-success" id="submitBtn" style="display: none;">Prosseguir
+                            ✓</button>
                     </div>
                 </div>
+            </section>
+
+            <section id="historico" class="content-section active">
             </section>
 
         </main>
     </div>
 
     <script src="../js/paciente.js"></script>
-    <script src="../js/agendamento.js"></script>
 </body>
+<div id="modalSucesso"
+    style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.5); z-index: 1000; justify-content: center; align-items: center;">
+    <div
+        style="background: white; padding: 30px; border-radius: 15px; text-align: center; max-width: 450px; width: 90%; box-shadow: 0 10px 25px rgba(0,0,0,0.2);">
+        <div style="color: #28a745; font-size: 50px; margin-bottom: 10px;">✔</div>
+        <h2 style="margin-bottom: 20px; color: #333;">Consulta Agendada!</h2>
+
+        <div id="resumoCard"
+            style="background: #f8f9fa; padding: 15px; border-radius: 10px; text-align: left; margin-bottom: 25px; border-left: 5px solid #28a745;">
+            <p><strong>Paciente:</strong> <span id="resumoPaciente"></span></p>
+            <p><strong>Médico:</strong> <span id="resumoMedico"></span></p>
+            <p><strong>Data:</strong> <span id="resumoData"></span></p>
+            <p><strong>Horário:</strong> <span id="resumoHora"></span></p>
+        </div>
+
+        <div style="display: flex; flex-direction: column; gap: 10px;">
+            <button onclick="irParaHistorico()"
+                style="background: #28a745; color: white; border: none; padding: 12px; border-radius: 5px; cursor: pointer; font-weight: bold; transition: 0.3s;">
+                Ver Minhas Consultas
+            </button>
+
+            <button onclick="novoAgendamento()"
+                style="background: #ffffff; border: 1px solid #ced4da; padding: 10px; border-radius: 5px; cursor: pointer; color: #6c757d;">
+                Realizar Outro Agendamento
+            </button>
+        </div>
+    </div>
+</div>
+
 </html>

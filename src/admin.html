@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vittae - Painel do Paciente</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="../css/admin.css">
+</head>
+
+<body>
+
+    <div class="dashboard-container">
+        <aside class="sidebar">
+            <div class="sidebar-logo">
+                <i class="fas fa-stethoscope"></i>
+                <span>Vittae</span>
+            </div>
+
+            <nav class="sidebar-nav">
+                <a href="#" class="nav-item active" data-target="inicio">
+                    <i class="fas fa-home"></i> Início
+                </a>
+                <a href="#" class="nav-item" id="menuCadastrarMedico">
+                    <i class="fas fa-archive"></i> Cadastrar Médico
+                </a>
+                <a href="#" class="nav-item" data-target="perfil">
+                    <i class="fas fa-user-circle"></i> Meu Perfil
+                </a>
+            </nav>
+
+            <div class="sidebar-footer">
+                <a href="login.html"><i class="fas fa-sign-out-alt"></i> Sair</a>
+            </div>
+        </aside>
+
+        <main class="main-content">
+
+            <header class="topbar">
+                <div class="search-bar">
+                    <i class="fas fa-search"></i>
+                    <input type="text" placeholder="Buscar consultas ou médicos...">
+                </div>
+                <div class="user-info">
+                    <div class="notifications">
+                        <i class="fas fa-bell"></i>
+                        <span class="badge">9+</span>
+                    </div>
+                    <img src="https://ui-avatars.com/api/?name=Paciente+Exemplo&background=7c3aed&color=fff"
+                        alt="Avatar">
+                </div>
+            </header>
+
+            <section id="inicio" class="content-section active">
+                <div class="welcome">
+                    <h1>Bem-vindo, Adminstrador!</h1>
+                    <p>Aqui está o resumo da sua saúde hoje.</p>
+                </div>
+
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <i class="fas fa-clock blue"></i>
+                        <div>
+                            <h3>Próxima Consulta</h3>
+                            <p>Amanhã, às 14:00h</p>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <i class="fas fa-check-circle green"></i>
+                        <div>
+                            <h3>Exames Prontos</h3>
+                            <p>2 novos resultados</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="recent-table">
+                    <h2>Consultas Recentes</h2>
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Médico</th>
+                                <th>Especialidade</th>
+                                <th>Data</th>
+                                <th>Status</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Dr. Ricardo Lima</td>
+                                <td>Cardiologia</td>
+                                <td>12/10/2026</td>
+                                <td><span class="status-badge pendente">Pendente</span></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+
+
+        </main>
+    </div>
+    <section>
+        <div id="modalCadastroMedico" class="modal-container" style="display: none;">
+            <div class="modal-conteudo">
+                <span class="fechar-modal" id="btnFecharModal">&times;</span>
+                <h2>Cadastrar Novo Médico</h2>
+
+                <form id="formCadastroMedico">
+                    <label for="nomeMedico">Nome Completo:</label>
+                    <input type="text" id="nomeMedico" name="nomeMedico" required>
+
+                    <label for="emailMedico">E-mail Profissional:</label>
+                    <input type="email" id="emailMedico" name="emailMedico" required>
+
+                    <label for="crmMedico">CRM:</label>
+                    <input type="text" id="crmMedico" name="crmMedico" placeholder="Ex: 123456-SP" required>
+
+                    <label for="especialidadeMedico">Especialidade:</label>
+                    <select id="especialidadeMedico" name="especialidadeMedico" required>
+                        <option value="">Selecione...</option>
+                        <option value="Cardiologia">Cardiologia</option>
+                        <option value="Pediatria">Pediatria</option>
+                        <option value="Ortopedia">Ortopedia</option>
+                        <option value="Clinico Geral">Clínico Geral</option>
+                    </select>
+
+                    <button type="submit" class="btn-salvar">Salvar Cadastro</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <script src="../js/admin.js"></script>
+</body>
+
+</html>

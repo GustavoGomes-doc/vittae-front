@@ -11,12 +11,13 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    font-family: 'Segoe UI', sans-serif;
+    font-family: 'Inter', sans-serif;
 }
 
 body {
     background-color: var(--bg-light);
     color: var(--text-dark);
+    font-family: 'Inter', sans-serif;
 }
 
 .dashboard-container {

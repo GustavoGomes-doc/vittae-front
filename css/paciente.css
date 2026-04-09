@@ -1,7 +1,7 @@
 /* =========================================================
    1. VARIÁVEIS E BASE (Do seu Painel Original)
    ========================================================= */
-   :root {
+:root {
     --primary: #7c3aed;
     --primary-hover: #6d28d9;
     --bg-light: #f8fafc;
@@ -14,15 +14,19 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    font-family: 'Segoe UI', Tahoma, Verdana, sans-serif;
+    font-family: "Nunito Sans", sans-serif;
+    font-weight: 800;
 }
+
 
 body {
     background-color: var(--bg-light);
     color: var(--text-dark);
     min-height: 100vh;
-    font-family: 'Segoe UI', Tahoma, Verdana, sans-serif
+    font-family: "Nunito Sans", sans-serif;
+    font-weight: 900;
 }
+
 
 /* =========================================================
    2. LAYOUT DO PAINEL (Sidebar e Conteúdo)
@@ -141,8 +145,15 @@ body {
 }
 
 @keyframes fadeIn {
-    from { opacity: 0; transform: translateY(10px); }
-    to { opacity: 1; transform: translateY(0); }
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
 }
 
 /* Cards do Painel (Estatísticas, etc) */
@@ -169,8 +180,15 @@ body {
     border-radius: 12px;
 }
 
-.stat-card i.blue { background: #eff6ff; color: #3b82f6; }
-.stat-card i.green { background: #f0fdf4; color: #22c55e; }
+.stat-card i.blue {
+    background: #eff6ff;
+    color: #3b82f6;
+}
+
+.stat-card i.green {
+    background: #f0fdf4;
+    color: #22c55e;
+}
 
 /* Tabela do Painel */
 .recent-table {
@@ -220,7 +238,7 @@ td {
     background: var(--white);
     border-radius: 16px;
     padding: 40px;
-    box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
 }
 
 .appointment-header h2 {
@@ -231,19 +249,24 @@ td {
 }
 
 /* Barra de Progresso */
-.progress-wrapper { margin-bottom: 40px; }
+.progress-wrapper {
+    margin-bottom: 40px;
+}
+
 .progress-steps {
     display: flex;
     justify-content: space-between;
     position: relative;
     margin-bottom: 10px;
 }
+
 .step-item {
     display: flex;
     flex-direction: column;
     align-items: center;
     z-index: 2;
 }
+
 .step-circle {
     width: 50px;
     height: 50px;
@@ -257,18 +280,25 @@ td {
     font-size: 18px;
     transition: all 0.3s;
 }
+
 .step-circle.active {
     background: var(--primary);
     color: white;
     box-shadow: 0 0 0 4px rgba(124, 58, 237, 0.2);
 }
-.step-circle.completed { background: #48bb78; color: white; }
+
+.step-circle.completed {
+    background: #48bb78;
+    color: white;
+}
+
 .step-label {
     margin-top: 8px;
     font-size: 13px;
     color: #718096;
     font-weight: 500;
 }
+
 .progress-line {
     position: relative;
     height: 5px;
@@ -276,6 +306,7 @@ td {
     border-radius: 4px;
     margin: -60px 40px 0;
 }
+
 .progress-fill {
     position: absolute;
     height: 100%;
@@ -290,15 +321,18 @@ td {
     display: none;
     min-height: 350px;
 }
+
 .form-step.active {
     display: block;
     animation: fadeIn 0.3s;
 }
+
 .form-step h3 {
     font-size: 20px;
     color: var(--text-dark);
     margin-bottom: 25px;
 }
+
 .step-header-row {
     display: flex;
     justify-content: space-between;
@@ -307,7 +341,10 @@ td {
 }
 
 /* Elementos do Formulário */
-.form-group { margin-bottom: 20px; }
+.form-group {
+    margin-bottom: 20px;
+}
+
 .form-group label {
     display: block;
     font-size: 14px;
@@ -315,6 +352,7 @@ td {
     color: #4a5568;
     margin-bottom: 8px;
 }
+
 .form-control {
     width: 100%;
     padding: 12px 16px;
@@ -324,11 +362,13 @@ td {
     transition: all 0.2s;
     font-family: inherit;
 }
+
 .form-control:focus {
     outline: none;
     border-color: var(--primary);
     box-shadow: 0 0 0 3px rgba(124, 58, 237, 0.1);
 }
+
 .form-row {
     display: grid;
     grid-template-columns: 1fr 1fr;
@@ -341,6 +381,7 @@ td {
     grid-template-columns: 1fr 1fr;
     gap: 15px;
 }
+
 .radio-box {
     display: flex;
     align-items: center;
@@ -351,8 +392,15 @@ td {
     cursor: pointer;
     transition: all 0.2s;
 }
-.radio-box input { display: none; }
-.radio-box:hover { border-color: #cbd5e0; }
+
+.radio-box input {
+    display: none;
+}
+
+.radio-box:hover {
+    border-color: #cbd5e0;
+}
+
 .radio-box.active {
     border-color: var(--primary);
     background: #f5f3ff;
@@ -379,10 +427,20 @@ td {
     max-height: 400px;
     overflow-y: auto;
 }
+
 /* Scrollbar */
-.doctors-list::-webkit-scrollbar { width: 6px; }
-.doctors-list::-webkit-scrollbar-track { background: #f7fafc; }
-.doctors-list::-webkit-scrollbar-thumb { background: #cbd5e0; border-radius: 3px; }
+.doctors-list::-webkit-scrollbar {
+    width: 6px;
+}
+
+.doctors-list::-webkit-scrollbar-track {
+    background: #f7fafc;
+}
+
+.doctors-list::-webkit-scrollbar-thumb {
+    background: #cbd5e0;
+    border-radius: 3px;
+}
 
 /* Isolamos a classe com #agendar para não conflitar com a Home do paciente */
 #agendar .doctor-card {
@@ -392,12 +450,15 @@ td {
     cursor: pointer;
     transition: all 0.2s;
     background: #fafafa;
-    text-align: left; /* Corrige alinhamento que a home centralizava */
+    text-align: left;
+    /* Corrige alinhamento que a home centralizava */
 }
+
 #agendar .doctor-card:hover {
     border-color: #cbd5e0;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
 }
+
 #agendar .doctor-card.selected {
     border-color: var(--primary);
     background: #f5f3ff;
@@ -408,6 +469,7 @@ td {
     gap: 12px;
     margin-bottom: 10px;
 }
+
 .doctor-avatar {
     width: 45px;
     height: 45px;
@@ -421,19 +483,23 @@ td {
     font-size: 16px;
     flex-shrink: 0;
 }
+
 #agendar .doctor-card.selected .doctor-avatar {
     background: var(--primary);
     color: white;
 }
+
 .doctor-info h4 {
     font-size: 15px;
     color: #2d3748;
     margin-bottom: 4px;
 }
+
 .doctor-specialty {
     font-size: 13px;
     color: var(--primary);
 }
+
 .doctor-details {
     display: flex;
     gap: 15px;
@@ -462,26 +528,61 @@ td {
     transition: all 0.2s;
     font-family: inherit;
 }
-.btn-primary { background: var(--primary); color: white; }
-.btn-primary:hover { background: var(--primary-hover); }
-.btn-success { background: #48bb78; color: white; }
-.btn-success:hover { background: #38a169; }
-.btn-secondary { background: transparent; color: #718096; }
-.btn-secondary:hover { background: #f7fafc; }
-.btn-secondary:disabled { color: #cbd5e0; cursor: not-allowed; }
-.btn-secondary:disabled:hover { background: transparent; }
+
+.btn-primary {
+    background: var(--primary);
+    color: white;
+}
+
+.btn-primary:hover {
+    background: var(--primary-hover);
+}
+
+.btn-success {
+    background: #48bb78;
+    color: white;
+}
+
+.btn-success:hover {
+    background: #38a169;
+}
+
+.btn-secondary {
+    background: transparent;
+    color: #718096;
+}
+
+.btn-secondary:hover {
+    background: #f7fafc;
+}
+
+.btn-secondary:disabled {
+    color: #cbd5e0;
+    cursor: not-allowed;
+}
+
+.btn-secondary:disabled:hover {
+    background: transparent;
+}
 
 /* Modal de Sucesso */
 .modal-overlay {
     position: fixed;
-    top: 0; left: 0; width: 100%; height: 100%;
-    background: rgba(0,0,0,0.5);
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
     display: none;
     align-items: center;
     justify-content: center;
     z-index: 9999;
 }
-.modal-overlay.show { display: flex; }
+
+.modal-overlay.show {
+    display: flex;
+}
+
 .modal-content {
     background: white;
     border-radius: 16px;
@@ -490,10 +591,16 @@ td {
     width: 90%;
     text-align: center;
 }
+
 .success-check {
-    width: 70px; height: 70px;
-    background: #c6f6d5; border-radius: 50%;
-    display: flex; align-items: center; justify-content: center;
-    font-size: 40px; color: #48bb78;
+    width: 70px;
+    height: 70px;
+    background: #c6f6d5;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 40px;
+    color: #48bb78;
     margin: 0 auto 20px;
 }

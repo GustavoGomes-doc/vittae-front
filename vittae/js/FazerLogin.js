@@ -12,50 +12,18 @@ signInBtn.addEventListener('click', () => {
     container.classList.remove("register-active");
 });
 
-const formatCPF = (value) => {
-    // 1. Remove tudo que não é número e limita a 11 dígitos
-    let num = value.replace(/\D/g, '').slice(0, 11);
-    
-    // 2. Aplica a máscara passo a passo para não ter erro
-    if (num.length > 9) {
-        num = num.replace(/(\d{3})(\d{3})(\d{3})(\d{1,2})/, "$1.$2.$3-$4");
-    } else if (num.length > 6) {
-        num = num.replace(/(\d{3})(\d{3})(\d{1,3})/, "$1.$2.$3");
-    } else if (num.length > 3) {
-        num = num.replace(/(\d{3})(\d{1,3})/, "$1.$2");
-    }
-    
-    return num;
-};
-
-// Aplicação (mantendo o seu seletor)
-document.querySelectorAll('input[placeholder*="CPF"]').forEach(input => {
-    input.addEventListener('input', ({ target }) => {
-        target.value = formatCPF(target.value);
+const cpfInputs = document.querySelectorAll('input[placeholder*="CPF"]');
+cpfInputs.forEach(input => {
+    input.addEventListener('input', (e) => {
+        let value = e.target.value.replace(/\D/g, ""); 
+        
+        if (value.length <= 11) {
+            value = value.replace(/(\d{3})(\d)/, "$1.$2");
+            value = value.replace(/(\d{3})(\d)/, "$1.$2");
+            value = value.replace(/(\d{3})(\d{1,2})$/, "$1-$2");
+        }
+        e.target.value = value;
     });
-});
-
-const telInput = document.getElementById('telefone');
-
-telInput.addEventListener('input', (e) => {
-    let value = e.target.value;
-    
-    // Remove tudo o que não for número
-    value = value.replace(/\D/g, "");
-    
-    // Aplica a formatação (Máscara)
-    if (value.length > 0) {
-        value = "(" + value;
-    }
-    if (value.length > 3) {
-        value = value.slice(0, 3) + ") " + value.slice(3);
-    }
-    if (value.length > 10) {
-        value = value.slice(0, 10) + "-" + value.slice(10);
-    }
-    
-    // Limita o máximo de caracteres para (99) 99999-9999 (15 caracteres)
-    e.target.value = value.slice(0, 15);
 });
 
 

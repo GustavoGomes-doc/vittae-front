@@ -524,9 +524,6 @@
 
         if (tabHistorico) tabHistorico.classList.add('active');
         if (sectionHistorico) sectionHistorico.classList.add('active');
-
-        // MANDA BUSCAR OS DADOS NO BANCO!
-        carregarHistorico(); 
     };
 
     window.novoAgendamento = function() {
@@ -537,33 +534,6 @@
             resetForm();
         } else {
             location.reload();
-        }
-    };
-
-    window.carregarHistorico = async function() {
-        console.log("Buscando histórico no banco de dados...");
-        try {
-            // 1. Pegamos o token que foi salvo na hora do login. 
-            // (Verifique se o nome é 'token' mesmo, às vezes o pessoal chama de 'jwt' ou 'userToken')
-            const token = localStorage.getItem("token"); 
-
-            // 2. Fazemos o fetch, mas agora enviando o Cabeçalho de Autorização
-            const response = await fetch("http://localhost:8082/api/agendamentos", {
-                method: 'GET',
-                headers: {
-                    'Authorization': `Bearer ${token}`, // Aqui está a mágica! A carteirinha VIP.
-                    'Content-Type': 'application/json'
-                }
-            }); 
-            
-            if (response.ok) {
-                const consultas = await response.json();
-                console.log("SUCESSO! Olha o que veio do banco:", consultas);
-            } else {
-                console.error("Erro ao buscar dados. O leão de chácara bloqueou. Status:", response.status);
-            }
-        } catch (error) {
-            console.error("Erro de conexão ao buscar histórico:", error);
         }
     };
 

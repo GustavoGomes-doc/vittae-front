@@ -22,16 +22,16 @@
             </div>
 
             <nav class="sidebar-nav">
-                <a href="#" class="nav-item active" data-target="inicio">
+                <a href="TemplatePaciente.html" class="nav-item" data-target="inicio">
                     <i class="fas fa-home"></i> Início
                 </a>
-                <a href="#" class="nav-item" data-target="agendar">
+                <a href="AgendarConsulta.html" class="nav-item active" data-target="agendar">
                     <i class="fas fa-calendar-plus"></i> Agendar Consulta
                 </a>
-                <a href="#" class="nav-item" data-target="historico">
+                <a href="VerConsultas.html" class="nav-item" data-target="historico">
                     <i class="fas fa-file-medical"></i> Meu Histórico
                 </a>
-                <a href="#" class="nav-item" data-target="perfil">
+                <a href="MeuPerfil.html" class="nav-item" data-target="perfil">
                     <i class="fas fa-user-circle"></i> Meu Perfil
                 </a>
             </nav>
@@ -57,54 +57,8 @@
                         alt="Avatar">
                 </div>
             </header>
-
-            <section id="inicio" class="content-section active">
-                <div class="welcome">
-                    <h1>Bem-vindo, Paciente!</h1>
-                    <p>Aqui está o resumo da sua saúde hoje.</p>
-                </div>
-
-                <div class="stats-grid">
-                    <div class="stat-card">
-                        <i class="fas fa-clock blue"></i>
-                        <div>
-                            <h3>Próxima Consulta</h3>
-                            <p>Amanhã, às 14:00h</p>
-                        </div>
-                    </div>
-                    <div class="stat-card">
-                        <i class="fas fa-check-circle green"></i>
-                        <div>
-                            <h3>Exames Prontos</h3>
-                            <p>2 novos resultados</p>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="recent-table">
-                    <h2>Consultas Recentes</h2>
-                    <table>
-                        <thead>
-                            <tr>
-                                <th>Médico</th>
-                                <th>Especialidade</th>
-                                <th>Data</th>
-                                <th>Status</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td>Dr. Ricardo Lima</td>
-                                <td>Cardiologia</td>
-                                <td>12/10/2026</td>
-                                <td><span class="status-badge pendente">Pendente</span></td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
-            </section>
-
-            <section id="agendar" class="content-section">
+            
+            <section id="agendar" class="content-section active">
 
                 <div class="appointment-container">
                     <div class="appointment-header">
@@ -229,7 +183,9 @@
         </main>
     </div>
 
-    <script src="../js/paciente.js"></script>
+    <script src="/vittae/js/AgendarConsulta.js"></script>
+    <script src="/vittae/js/Paciente.js"></script>
+    
 </body>
 <div id="modalSucesso"
     style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.5); z-index: 1000; justify-content: center; align-items: center;">

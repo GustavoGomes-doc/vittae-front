@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vittae - Cadastrar Médico</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="/vittae/css/sistema.css">
+    <link rel="stylesheet" href="/vittae/css/admin.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+
+    <div class="dashboard-container">
+        <aside class="sidebar">
+            <div class="sidebar-logo">
+                <i class="fas fa-stethoscope"></i>
+                <span>Vittae</span>
+            </div>
+
+            <nav class="sidebar-nav">
+                <a href="TemplateAdmin.html" class="nav-item">
+                    <i class="fas fa-home"></i> Início
+                </a>
+                <a href="CadastrarMedico.html" class="nav-item active">
+                    <i class="fas fa-user-plus"></i> Cadastrar Médico
+                </a>
+                <a href="MeuPerfilAdmin.html" class="nav-item">
+                    <i class="fas fa-user-circle"></i> Meu Perfil
+                </a>
+            </nav>
+
+            <div class="sidebar-footer">
+                <a href="login.html"><i class="fas fa-sign-out-alt"></i> Sair</a>
+            </div>
+        </aside>
+
+        <main class="main-content">
+
+            <header class="topbar">
+                <div class="search-bar">
+                    <i class="fas fa-search"></i>
+                    <input type="text" placeholder="Buscar médicos...">
+                </div>
+                <div class="user-info">
+                    <div class="notifications">
+                        <i class="fas fa-bell"></i>
+                        <span class="badge">9+</span>
+                    </div>
+                    <img src="https://ui-avatars.com/api/?name=Admin&background=7c3aed&color=fff" alt="Avatar">
+                </div>
+            </header>
+
+            <div class="cabecalho-pagina">
+                <h2>Cadastrar Novo Médico</h2>
+                <p>Preencha os dados do profissional para adicioná-lo ao sistema.</p>
+            </div>
+
+            <div class="card-formulario">
+                <form id="formCadastroCompleto" novalidate>
+
+                    <div class="form-group foto-upload">
+                        <label for="fotoMedico">Foto do Profissional</label>
+                        <input type="file" id="fotoMedico" accept="image/*">
+                    </div>
+
+                    <div class="form-grid">
+                        <div class="form-group">
+                            <label for="nomeMedico">Nome Completo *</label>
+                            <input type="text" id="nomeMedico" placeholder="Ex: Dr. Ricardo Lima" required>
+                            <span class="erro-msg">Nome é obrigatório.</span>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="cpfMedico">CPF *</label>
+                            <input type="text" id="cpfMedico" placeholder="000.000.000-00" required>
+                            <span class="erro-msg">CPF inválido.</span>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="crmMedico">CRM *</label>
+                            <input type="text" id="crmMedico" placeholder="Ex: 123456-SP" required>
+                            <span class="erro-msg">CRM é obrigatório.</span>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="especialidadesMedico">Especialidades (Até 3) *</label>
+                            <select id="especialidadesMedico" multiple required>
+                                <option value="Cardiologia">Cardiologia</option>
+                                <option value="Pediatria">Pediatria</option>
+                                <option value="Ortopedia">Ortopedia</option>
+                                <option value="Dermatologia">Dermatologia</option>
+                                <option value="Neurologia">Neurologia</option>
+                                <option value="Clinico Geral">Clínico Geral</option>
+                            </select>
+                            <small>Segure CTRL para selecionar mais de uma.</small>
+                            <span class="erro-msg" id="erro-especialidade">Selecione de 1 a 3 especialidades.</span>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="valorConsulta">Valor da Consulta (R$) *</label>
+                            <input type="number" id="valorConsulta" placeholder="Ex: 350.00" step="0.01" required>
+                            <span class="erro-msg">Informe um valor válido.</span>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="localizacao">Localização / Consultório *</label>
+                            <input type="text" id="localizacao" placeholder="Ex: Sala 402 - Bloco B" required>
+                            <span class="erro-msg">Localização é obrigatória.</span>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="emailMedico">E-mail de Acesso *</label>
+                            <input type="email" id="emailMedico" placeholder="medico@vittae.com" required>
+                            <span class="erro-msg">E-mail inválido.</span>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="senhaMedico">Senha Temporária *</label>
+                            <input type="password" id="senhaMedico" placeholder="Mínimo 6 caracteres" minlength="6" required>
+                            <span class="erro-msg">A senha deve ter no mínimo 6 caracteres.</span>
+                        </div>
+                    </div>
+
+                    <div class="form-actions">
+                        <button type="button" class="btn-cancelar" id="btnCancelarCadastro">Cancelar</button>
+                        <button type="submit" class="btn-salvar">Salvar Cadastro</button>
+                    </div>
+                </form>
+            </div>
+
+        </main>
+    </div>
+
+    <script src="/vittae/js/Admin.js"></script>
+    <script src="/vittae/js/CadastrarMedico.js"></script>
+</body>
+</html>

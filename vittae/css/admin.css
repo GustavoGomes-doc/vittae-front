@@ -1,3 +1,11 @@
+* {
+    font-family: 'Montserrat', sans-serif;
+}
+
+body {
+    font-family: 'Montserrat', sans-serif;
+}
+
 .modal-container {
     position: fixed;
     top: 0;
@@ -68,119 +76,149 @@
     padding: 20px;
 }
 
+/* ========================================
+   CADASTRAR MÉDICO - admin.css
+   ======================================== */
+
 .cabecalho-pagina {
     margin-bottom: 24px;
 }
 
 .cabecalho-pagina h2 {
-    color: #1e293b;
-    margin-bottom: 8px;
+    font-size: 28px;
+    font-weight: 700;
+    color: var(--text-dark);
 }
 
 .cabecalho-pagina p {
-    color: #64748b;
-    font-size: 14px;
+    color: #718096;
+    margin-top: 4px;
 }
 
 .card-formulario {
-    background-color: #ffffff;
-    border-radius: 12px;
-    padding: 32px;
-    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+    max-width: 800px;
+    margin: 0 auto;
+    background: var(--white);
+    border-radius: 16px;
+    padding: 40px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
 }
 
 .form-grid {
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 20px;
-}
-
-.form-group {
-    display: flex;
-    flex-direction: column;
+    margin-top: 20px;
 }
 
 .foto-upload {
-    grid-column: 1 / -1;
-    margin-bottom: 20px;
+    margin-bottom: 8px;
 }
 
-.form-group label {
+.foto-upload input[type="file"] {
+    width: 100%;
+    padding: 12px 16px;
+    border: 1px solid #e2e8f0;
+    border-radius: 8px;
     font-size: 14px;
-    font-weight: 600;
-    color: #334155;
-    margin-bottom: 6px;
+    font-family: inherit;
+    cursor: pointer;
 }
 
-.form-group input,
-.form-group select {
-    padding: 10px 12px;
-    border: 1px solid #cbd5e1;
-    border-radius: 6px;
-    font-family: 'Segoe UI', Tahoma, Verdana, sans-serif;
+.form-grid .form-group label {
+    display: block;
     font-size: 14px;
-    transition: border-color 0.2s;
+    font-weight: 500;
+    color: #4a5568;
+    margin-bottom: 8px;
 }
 
-.form-group input:focus,
-.form-group select:focus {
+.form-grid .form-group input,
+.form-grid .form-group select {
+    width: 100%;
+    padding: 12px 16px;
+    border: 1px solid #e2e8f0;
+    border-radius: 8px;
+    font-size: 15px;
+    font-family: inherit;
+    transition: all 0.2s;
+}
+
+.form-grid .form-group input:focus,
+.form-grid .form-group select:focus {
     outline: none;
-    border-color: #6366f1;
-    box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.1);
+    border-color: var(--primary);
+    box-shadow: 0 0 0 3px rgba(124, 58, 237, 0.1);
 }
 
-.form-group select[multiple] {
-    height: 100px;
+.form-grid .form-group select[multiple] {
+    height: 130px;
 }
 
-.form-group small {
-    color: #94a3b8;
+.form-grid .form-group small {
+    display: block;
+    color: #718096;
     font-size: 12px;
     margin-top: 4px;
 }
 
+/* Erros */
 .erro-msg {
-    color: #ef4444;
+    display: none;
+    color: #e53e3e;
     font-size: 12px;
     margin-top: 4px;
-    display: none;
 }
 
 .input-invalido {
-    border-color: #ef4444 !important;
-    background-color: #fef2f2;
+    border-color: #e53e3e !important;
+    box-shadow: 0 0 0 3px rgba(229, 62, 62, 0.1) !important;
+}
+
+/* Ações */
+.form-actions {
+    display: flex;
+    justify-content: flex-end;
+    gap: 12px;
+    margin-top: 32px;
+    padding-top: 24px;
+    border-top: 1px solid #e2e8f0;
 }
 
 .btn-salvar {
-    padding: 10px 24px;
-    background-color: #6366f1;
+    background: var(--primary);
     color: white;
     border: none;
-    border-radius: 6px;
-    cursor: pointer;
+    padding: 12px 28px;
+    border-radius: 8px;
+    font-size: 15px;
     font-weight: 600;
+    cursor: pointer;
+    transition: background 0.2s;
 }
 
 .btn-salvar:hover {
-    background-color: #4f46e5;
+    background: #6d28d9;
+}
+
+.btn-salvar:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
 }
 
 .btn-cancelar {
-    padding: 10px 20px;
-    background-color: transparent;
-    color: #64748b;
-    border: 1px solid #cbd5e1;
-    border-radius: 6px;
-    cursor: pointer;
+    background: transparent;
+    color: #718096;
+    border: 1px solid #e2e8f0;
+    padding: 12px 28px;
+    border-radius: 8px;
+    font-size: 15px;
     font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s;
 }
 
 .btn-cancelar:hover {
-    background-color: #f1f5f9;
-}
-
-@media (max-width: 768px) {
-    .form-grid {
-        grid-template-columns: 1fr;
-    }
+    background: #f7fafc;
+    border-color: #cbd5e0;
 }

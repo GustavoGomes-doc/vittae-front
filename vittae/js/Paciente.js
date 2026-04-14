@@ -26,7 +26,6 @@
     // INICIALIZAÇÃO
     // ==========================================
     async function init() {
-        setupTabs();
         setupEventListeners();
         setMinDate();
         updateProgressBar();
@@ -36,31 +35,18 @@
     // ==========================================
     // NAVEGAÇÃO DE ABAS (Ex: Paciente.js)
     // ==========================================
-    function setupTabs() {
-        const navItems = document.querySelectorAll('.nav-item');
-        const sections = document.querySelectorAll('.content-section');
 
-        navItems.forEach(item => {
-            item.addEventListener('click', function (e) {
-                e.preventDefault();
-                const target = this.getAttribute('data-target');
+    window.irParaHistorico = function () {
+        const modal = document.getElementById('modalSucesso');
+        if (modal) modal.style.display = 'none';
+        window.location.href = 'VerConsultas.html'; // ← navega por arquivo
+    };
 
-                navItems.forEach(i => i.classList.remove('active'));
-                sections.forEach(s => s.classList.remove('active'));
-
-                this.classList.add('active');
-                const targetSection = document.getElementById(target);
-                if (targetSection) targetSection.classList.add('active');
-
-                if (target === 'agendar') {
-                    resetForm(); // Isso garante que ele volte ao Step 1 sempre que você entrar na aba
-                    if (doctors.length === 0) {
-                        fetchDoctors();
-                    }
-                }
-            });
-        });
-    }
+    window.novoAgendamento = function () {
+        const modal = document.getElementById('modalSucesso');
+        if (modal) modal.style.display = 'none';
+        resetForm();
+    };
 
     // ==========================================
     // EVENTOS DO FORMULÁRIO DE AGENDAMENTO
@@ -509,7 +495,7 @@
         init();
     }
 
-    window.irParaHistorico = function() {
+    window.irParaHistorico = function () {
         // Esconde o modal
         const modal = document.getElementById('modalSucesso');
         if (modal) modal.style.display = 'none';
@@ -526,10 +512,10 @@
         if (sectionHistorico) sectionHistorico.classList.add('active');
     };
 
-    window.novoAgendamento = function() {
+    window.novoAgendamento = function () {
         const modal = document.getElementById('modalSucesso');
         if (modal) modal.style.display = 'none';
-        
+
         if (typeof resetForm === "function") {
             resetForm();
         } else {

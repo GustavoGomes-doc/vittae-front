@@ -80,3 +80,10 @@ loginForm.addEventListener('submit', async (e) => {
         btnLogar.disabled = false;
     }
 });
+
+const signUpBtn2 = document.getElementById('signUpBtn2');
+if (signUpBtn2) {
+    signUpBtn2.addEventListener('click', () => {
+        mainContainer.classList.add('register-active');
+    });
+}

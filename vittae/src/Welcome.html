@@ -5,34 +5,44 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Vittae</title>
-    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/welcome.css">
     <link rel="shortcut icon" href="../imagens/facvicon VITTAE.png" type="image/x-icon">
 </head>
 
 <body>
     <!-- Header -->
     <header id="headermain" class="header">
-        <div class="container">
-            <div class="nav-wrapper">
-                <a href="#" class="logo" onclick="showPage('home')">
-                    <i class="fas fa-stethoscope"></i>
-                    <span>Vittae</span>
+    <div class="container">
+        <div class="nav-wrapper">
+            <a href="#" class="logo" onclick="showPage('home')">
+                <i class="fas fa-stethoscope"></i>
+                <span>Vittae</span>
+            </a>
+
+            <nav class="nav-menu">
+                <a href="#" onclick="showPage('consultas')" class="nav-link">
+                    <i class="fas fa-calendar-alt"></i> Consultas
                 </a>
+                <a href="#" onclick="showPage('especialidades')" class="nav-link">
+                    <i class="fas fa-stethoscope"></i> Especialidades
+                </a>
+                <a href="#" onclick="showPage('exames')" class="nav-link">
+                    <i class="fas fa-vial"></i> Exames
+                </a>
+                <a href="#" onclick="showPage('sobre-nos')" class="nav-link">
+                    <i class="fas fa-users"></i> Sobre Nós
+                </a>
+            </nav>
 
-                <nav class="nav-menu">
-                    <a href="#" onclick="showPage('consultas')" class="nav-link">Consultas</a>
-                    <a href="#" onclick="showPage('especialidades')" class="nav-link">Especialidades</a>
-                    <a href="#" onclick="showPage('exames')" class="nav-link">Exames</a>
-                    <a href="#" onclick="showPage('sobre-nos')" class="nav-link">Sobre nós</a>
-                </nav>
-
-                <div class="auth-buttons">
-                    <a href="../src/login.html" class="btn-register">Fazer login</a>
-                </div>
+            <div class="auth-buttons">
+                <a href="FazerLogin.html" class="btn-register">
+                    <i class="fas fa-sign-in-alt"></i> Fazer Login
+                </a>
             </div>
         </div>
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-    </header>
+    </div>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</header>
 
     <!-- Main Content -->
     <main>
@@ -57,7 +67,8 @@
                                     todo o processo.
                                 </p>
 
-                                <a href="../login.html" class="btn-main">Agende sua consulta</a>
+                                <a href="FazerLogin.html" class="btn-main">Agende sua consulta</a>
+                                <a href="#" onclick="showPage('sobre-nos-page')" class="btn-saiba-mais">Saiba Mais</a>
                             </div>
                         </div>
 
@@ -123,151 +134,6 @@
                     </div>
                 </div>
             </section>
-
-            <div id="agendamento-form-page" class="page">
-                <section class="page-hero">
-                    <div class="container">
-
-                        <div class="appointment-container">
-                            <div class="appointment-header">
-                                <h2>Agendamento de Consulta</h2>
-                            </div>
-
-                            <div class="progress-wrapper">
-                                <div class="progress-steps">
-                                    <div class="step-item">
-                                        <div class="step-circle active" id="circle1"><span>1</span></div>
-                                        <span class="step-label">Consulta</span>
-                                    </div>
-                                    <div class="step-item">
-                                        <div class="step-circle" id="circle2"><span>2</span></div>
-                                        <span class="step-label">Médico</span>
-                                    </div>
-                                    <div class="step-item">
-                                        <div class="step-circle" id="circle3"><span>3</span></div>
-                                        <span class="step-label">Dados</span>
-                                    </div>
-                                </div>
-                                <div class="progress-line">
-                                    <div class="progress-fill" id="progressBar"></div>
-                                </div>
-                            </div> <br>
-
-                            <div class="form-step active" id="step1">
-                                <h3>Dados da Consulta</h3>
-
-                                <div class="form-group">
-                                    <label>Especialidade da consulta</label>
-                                    <select id="especialidadeType" class="form-control">
-                                        <option value="">Selecione...</option>
-                                        <option value="cardiologia">Cardiologia</option>
-                                        <option value="neurologia">Neurologia</option>
-                                        <option value="alergologia">Alergologia e Imunologia</option>
-                                        <option value="urologia">Urologia</option>
-                                        <option value="ginecologia">Ginecologia</option>
-                                        <option value="radiologia">Radiologia</option>
-                                    </select>
-                                </div>
-
-                                <div class="form-group">
-                                    <label>Tipo de Consulta</label>
-                                    <select id="consultaType" class="form-control">
-                                        <option value="">Selecione...</option>
-                                        <option value="rotina">Consulta de Rotina</option>
-                                        <option value="retorno">Retorno</option>
-                                        <option value="urgencia">Urgência</option>
-                                    </select>
-                                </div>
-
-                                <div class="form-group">
-                                    <label>Modalidade</label>
-                                    <div class="radio-options">
-                                        <label class="radio-box active" id="radioPresencial">
-                                            <input type="radio" name="modalidade" value="presencial" checked>
-                                            <span>Presencial</span>
-                                        </label>
-                                        <label class="radio-box" id="radioTeleconsulta">
-                                            <input type="radio" name="modalidade" value="teleconsulta">
-                                            <span>Teleconsulta</span>
-                                        </label>
-                                    </div>
-                                </div>
-
-                                <div class="form-row">
-                                    <div class="form-group">
-                                        <label>Data</label>
-                                        <input type="date" id="consultaDate" class="form-control">
-                                    </div>
-                                    <div class="form-group">
-                                        <label>Horário</label>
-                                        <input type="time" id="consultaTime" class="form-control">
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="form-step" id="step2">
-                                <div class="step-header-row">
-                                    <h3>Selecione o Médico</h3>
-                                    <input type="text" id="searchInput" placeholder="Buscar..." class="search-input">
-                                </div>
-                                <div class="doctors-list" id="doctorsList"></div>
-                            </div>
-
-                            <div class="form-step" id="step3">
-                                <h3>Seus Dados</h3>
-                                <div class="form-group">
-                                    <label>Nome Completo</label>
-                                    <input type="text" id="patientName" class="form-control"
-                                        placeholder="Digite seu nome">
-                                </div>
-                                <div class="form-row">
-                                    <div class="form-group">
-                                        <label>CPF</label>
-                                        <input type="text" id="patientCPF" class="form-control"
-                                            placeholder="000.000.000-00" maxlength="14">
-                                    </div>
-                                    <div class="form-group">
-                                        <label>Telefone</label>
-                                        <input type="tel" id="patientPhone" class="form-control"
-                                            placeholder="(00) 00000-0000" maxlength="15">
-                                    </div>
-                                    <div class="form-group">
-                                        <label>Data de Nascimento</label>
-                                        <input type="text" id="patientDate" class="form-control"
-                                            placeholder="00/00/0000" maxlength="10">
-                                    </div>
-                                    <div class="form-group">
-                                        <label>Sexo Biológico</label>
-                                        <select id="patientSex" class="form-control">
-                                            <option value="">Selecione...</option>
-                                            <option value="masculino">Masculino</option>
-                                            <option value="feminino">Feminino</option>
-                                        </select>
-                                    </div>
-                                </div>
-                                <div class="form-group">
-                                    <label>Email</label>
-                                    <input type="email" id="patientEmail" class="form-control"
-                                        placeholder="seu@email.com">
-                                </div>
-                                <div class="form-group">
-                                    <label>Observações (Opcional)</label>
-                                    <textarea id="observations" class="form-control" rows="3"
-                                        placeholder="Alguma observação?"></textarea>
-                                </div>
-                            </div>
-
-                            <div class="form-actions">
-                                <button class="btn btn-secondary" id="prevBtn" disabled>← Voltar</button>
-                                <button class="btn btn-primary" id="nextBtn">Próximo →</button>
-                                <button class="btn btn-success" id="submitBtn" style="display: none;">Prosseguir
-                                    ✓</button>
-                            </div>
-                        </div>
-
-                    </div>
-                </section>
-            </div>
 
             <section class="page-content">
                 <div class="container">
@@ -569,10 +435,10 @@
                 <div class="footer-section">
                     <h4>Links Rápidos</h4>
                     <ul>
-                        <li><a href="#" onclick="showPage('consultas')">Consultas</a></li>
-                        <li><a href="#" onclick="showPage('especialidades')">Especialidades</a></li>
-                        <li><a href="#" onclick="showPage('exames')">Exames</a></li>
-                        <li><a href="#" onclick="showPage('sobre-nos')">Sobre nós</a></li>
+                        <li><a href="#" onclick="showPage('consultas-page')">Consultas</a></li>
+                        <li><a href="#" onclick="showPage('especialidades-page')">Especialidades</a></li>
+                        <li><a href="#" onclick="showPage('exames-page')">Exames</a></li>
+                        <li><a href="#" onclick="showPage('sobre-nos-page')">Sobre nós</a></li>
                     </ul>
                 </div>
 
@@ -592,7 +458,7 @@
         </div>
     </footer>
 
-    <script src="/js/script.js"></script>
+    <script src="/vittae/js/welcome.js"></script>
 </body>
 
 </html>

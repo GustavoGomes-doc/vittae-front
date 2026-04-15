@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -11,6 +12,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&display=swap" rel="stylesheet">
 </head>
+
 <body>
 
     <div class="dashboard-container">
@@ -19,7 +21,6 @@
                 <i class="fas fa-stethoscope"></i>
                 <span>Vittae</span>
             </div>
-
             <nav class="sidebar-nav">
                 <a href="TemplateAdmin.html" class="nav-item">
                     <i class="fas fa-home"></i> Início
@@ -31,7 +32,6 @@
                     <i class="fas fa-user-circle"></i> Meu Perfil
                 </a>
             </nav>
-
             <div class="sidebar-footer">
                 <a href="login.html"><i class="fas fa-sign-out-alt"></i> Sair</a>
             </div>
@@ -58,83 +58,185 @@
                 <p>Preencha os dados do profissional para adicioná-lo ao sistema.</p>
             </div>
 
-            <div class="card-formulario">
-                <form id="formCadastroCompleto" novalidate>
+            <!-- ✅ FORM ADICIONADO AQUI -->
+            <form id="formCadastroCompleto" novalidate>
 
-                    <div class="form-group foto-upload">
-                        <label for="fotoMedico">Foto do Profissional</label>
-                        <input type="file" id="fotoMedico" accept="image/*">
+                <!-- ── FOTO ── -->
+                <div class="secao-form">
+                    <div class="secao-titulo"><i class="fas fa-camera"></i> Foto do Médico</div>
+                    <div class="foto-upload-area">
+                        <div class="foto-circulo" id="fotoCirculo" title="Clique para escolher foto">
+                            <i class="fas fa-user" id="fotoIcone"></i>
+                            <img id="fotoPreview" alt="Foto do médico" />
+                        </div>
+                        <div class="foto-btn-wrap">
+                            <button type="button" class="btn-foto"
+                                onclick="document.getElementById('fotoMedico').click()">
+                                <i class="fas fa-upload"></i> Selecionar Foto
+                            </button>
+                            <span class="foto-hint">JPG, PNG ou WEBP &middot; máx. 5 MB</span>
+                        </div>
+                        <input type="file" id="fotoMedico" accept="image/jpeg,image/png,image/webp"
+                            style="display:none">
                     </div>
+                </div>
 
-                    <div class="form-grid">
-                        <div class="form-group">
-                            <label for="nomeMedico">Nome Completo *</label>
+                <!-- ── DADOS PESSOAIS ── -->
+                <div class="secao-form">
+                    <div class="secao-titulo"><i class="fas fa-id-card"></i> Dados Pessoais</div>
+                    <div class="form-grid-2">
+
+                        <div class="form-group col-full">
+                            <label for="nomeMedico">Nome Completo <span class="req">*</span></label>
                             <input type="text" id="nomeMedico" placeholder="Ex: Dr. Ricardo Lima" required>
-                            <span class="erro-msg">Nome é obrigatório.</span>
+                            <span class="erro-msg" id="err-nome">Nome é obrigatório.</span>
                         </div>
 
                         <div class="form-group">
-                            <label for="cpfMedico">CPF *</label>
-                            <input type="text" id="cpfMedico" placeholder="000.000.000-00" required>
-                            <span class="erro-msg">CPF inválido.</span>
+                            <label for="cpfMedico">CPF <span class="req">*</span></label>
+                            <input type="text" id="cpfMedico" placeholder="000.000.000-00" maxlength="14" required>
+                            <span class="erro-msg" id="err-cpf">CPF inválido.</span>
                         </div>
 
                         <div class="form-group">
-                            <label for="crmMedico">CRM *</label>
-                            <input type="text" id="crmMedico" placeholder="Ex: 123456-SP" required>
-                            <span class="erro-msg">CRM é obrigatório.</span>
+                            <label for="dataNascimento">Data de Nascimento <span class="req">*</span></label>
+                            <input type="date" id="dataNascimento" required>
+                            <span class="erro-msg" id="err-nasc">Data de nascimento é obrigatória.</span>
+                        </div>
+
+                        <div class="form-group col-full">
+                            <label for="biografia">Biografia <span class="opcional">(opcional)</span></label>
+                            <textarea id="biografia" placeholder="Breve apresentação do profissional..."></textarea>
+                        </div>
+
+                    </div>
+                </div>
+
+                <!-- ── REGISTRO PROFISSIONAL ── -->
+                <div class="secao-form">
+                    <div class="secao-titulo"><i class="fas fa-id-badge"></i> Registro Profissional</div>
+                    <div class="form-grid-3">
+
+                        <div class="form-group">
+                            <label for="crmMedico">CRM <span class="req">*</span></label>
+                            <input type="text" id="crmMedico" placeholder="Ex: 123456" required>
+                            <span class="erro-msg" id="err-crm">CRM é obrigatório.</span>
                         </div>
 
                         <div class="form-group">
-                            <label for="especialidadesMedico">Especialidades (Até 3) *</label>
-                            <select id="especialidadesMedico" multiple required>
-                                <option value="Cardiologia">Cardiologia</option>
-                                <option value="Pediatria">Pediatria</option>
-                                <option value="Ortopedia">Ortopedia</option>
-                                <option value="Dermatologia">Dermatologia</option>
-                                <option value="Neurologia">Neurologia</option>
-                                <option value="Clinico Geral">Clínico Geral</option>
+                            <label for="ufCrm">UF do CRM <span class="req">*</span></label>
+                            <select id="ufCrm" required>
+                                <option value="">Selecione</option>
+                                <option>AC</option>
+                                <option>AL</option>
+                                <option>AP</option>
+                                <option>AM</option>
+                                <option>BA</option>
+                                <option>CE</option>
+                                <option>DF</option>
+                                <option>ES</option>
+                                <option>GO</option>
+                                <option>MA</option>
+                                <option>MT</option>
+                                <option>MS</option>
+                                <option>MG</option>
+                                <option>PA</option>
+                                <option>PB</option>
+                                <option>PR</option>
+                                <option>PE</option>
+                                <option>PI</option>
+                                <option>RJ</option>
+                                <option>RN</option>
+                                <option>RS</option>
+                                <option>RO</option>
+                                <option>RR</option>
+                                <option>SC</option>
+                                <option>SP</option>
+                                <option>SE</option>
+                                <option>TO</option>
                             </select>
-                            <small>Segure CTRL para selecionar mais de uma.</small>
-                            <span class="erro-msg" id="erro-especialidade">Selecione de 1 a 3 especialidades.</span>
+                            <span class="erro-msg" id="err-uf">Selecione a UF do CRM.</span>
                         </div>
 
                         <div class="form-group">
-                            <label for="valorConsulta">Valor da Consulta (R$) *</label>
-                            <input type="number" id="valorConsulta" placeholder="Ex: 350.00" step="0.01" required>
-                            <span class="erro-msg">Informe um valor válido.</span>
+                            <label for="rqeMedico">RQE <span class="opcional">(opcional)</span></label>
+                            <input type="text" id="rqeMedico" placeholder="Ex: 12345">
                         </div>
 
                         <div class="form-group">
-                            <label for="localizacao">Localização / Consultório *</label>
-                            <input type="text" id="localizacao" placeholder="Ex: Sala 402 - Bloco B" required>
-                            <span class="erro-msg">Localização é obrigatória.</span>
+                            <label for="cepMedico">CEP <span class="req">*</span></label>
+                            <input type="text" id="cepMedico" placeholder="00000-000" maxlength="9" required>
+                            <span class="erro-msg" id="err-cep">CEP inválido.</span>
                         </div>
 
                         <div class="form-group">
-                            <label for="emailMedico">E-mail de Acesso *</label>
+                            <label for="valorConsulta">Valor da Consulta (R$) <span class="req">*</span></label>
+                            <input type="number" id="valorConsulta" placeholder="Ex: 350.00" step="0.01" min="0" required>
+                            <span class="erro-msg" id="err-valor">Informe um valor válido.</span>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="tempoConsulta">Duração da Consulta (min) <span class="req">*</span></label>
+                            <input type="number" id="tempoConsulta" placeholder="Ex: 30" step="5" min="5" required>
+                            <span class="erro-msg" id="err-tempo">Informe a duração.</span>
+                        </div>
+
+                    </div>
+                </div>
+
+                <!-- ── ESPECIALIDADES ── -->
+                <div class="secao-form">
+                    <div class="secao-titulo"><i class="fas fa-stethoscope"></i> Especialidades</div>
+                    <div class="chips-wrap" id="chipsContainer"></div>
+                    <div class="chips-contador" id="chipsContador">0/3 selecionadas</div>
+                    <span class="erro-msg" id="err-especialidade">Selecione ao menos 1 especialidade.</span>
+                </div>
+
+                <!-- ── DISPONIBILIDADE ── -->
+                <div class="secao-form">
+                    <div class="secao-titulo"><i class="fas fa-calendar-alt"></i> Disponibilidade Semanal</div>
+                    <div class="disp-table" id="dispContainer"></div>
+                    <span class="erro-msg" id="err-disp">Defina ao menos um dia de atendimento.</span>
+                </div>
+
+                <!-- ── ACESSO ── -->
+                <div class="secao-form">
+                    <div class="secao-titulo"><i class="fas fa-lock"></i> Acesso ao Sistema</div>
+                    <div class="form-grid-2">
+
+                        <div class="form-group">
+                            <label for="emailMedico">E-mail de Acesso <span class="req">*</span></label>
                             <input type="email" id="emailMedico" placeholder="medico@vittae.com" required>
-                            <span class="erro-msg">E-mail inválido.</span>
+                            <span class="erro-msg" id="err-email">E-mail inválido.</span>
                         </div>
 
                         <div class="form-group">
-                            <label for="senhaMedico">Senha Temporária *</label>
+                            <label for="senhaMedico">Senha Temporária <span class="req">*</span></label>
                             <input type="password" id="senhaMedico" placeholder="Mínimo 6 caracteres" minlength="6" required>
-                            <span class="erro-msg">A senha deve ter no mínimo 6 caracteres.</span>
+                            <span class="erro-msg" id="err-senha">A senha deve ter no mínimo 6 caracteres.</span>
                         </div>
-                    </div>
 
-                    <div class="form-actions">
-                        <button type="button" class="btn-cancelar" id="btnCancelarCadastro">Cancelar</button>
-                        <button type="submit" class="btn-salvar">Salvar Cadastro</button>
                     </div>
-                </form>
-            </div>
+                </div>
+
+                <!-- ── AÇÕES ── -->
+                <div class="form-actions">
+                    <button type="button" class="btn-cancelar" id="btnCancelarCadastro">Cancelar</button>
+                    <button type="submit" class="btn-salvar">
+                        <i class="fas fa-check"></i> Salvar Cadastro
+                    </button>
+                </div>
+
+            </form>
+            <!-- ✅ FORM FECHADO AQUI -->
 
         </main>
     </div>
 
+    <div class="toast" id="toast"></div>
+
     <script src="/vittae/js/Admin.js"></script>
     <script src="/vittae/js/CadastrarMedico.js"></script>
 </body>
+
 </html>

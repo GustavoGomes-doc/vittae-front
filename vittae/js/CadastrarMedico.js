@@ -8,6 +8,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const fotoCirculo = document.getElementById('fotoCirculo');
     const fotoPreview = document.getElementById('fotoPreview');
     const fotoIcone = document.getElementById('fotoIcone');
+    const telefoneInput = document.getElementById('telefoneMedico');
 
     const ESPECIALIDADES = [
         'Cardiologia', 'Dermatologia', 'Pediatria', 'Ortopedia',
@@ -273,12 +274,22 @@ document.addEventListener('DOMContentLoaded', () => {
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify(payload)
         })
-            .then(res => {
-                if (!res.ok) {
-                    return res.json().then(err => { throw err; });
+        .then(async res => {
+            // Se não estiver OK (ex: 403, 404, 500)
+            if (!res.ok) {
+                let mensagemErro = `Erro ${res.status}`;
+                try {
+                    // Tenta ler o JSON de erro, se falhar, usa o status de texto
+                    const errData = await res.json();
+                    mensagemErro = errData.message || mensagemErro;
+                } catch (e) {
+                    // Se cair aqui, é porque o servidor enviou um erro sem corpo JSON
+                    if(res.status === 403) mensagemErro = "Acesso negado (403). Verifique as permissões do backend.";
                 }
-                return res.json();
-            })
+                throw new Error(mensagemErro);
+            }
+            return res.json();
+        })
             .then(data => {
                 console.log('Médico cadastrado:', data);
                 mostrarToast('Médico cadastrado com sucesso!', 'sucesso');

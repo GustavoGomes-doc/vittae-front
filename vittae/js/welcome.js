@@ -1,41 +1,33 @@
 function showPage(pageId) {
-    // Hide all pages
     const pages = document.querySelectorAll('.page');
     pages.forEach(page => {
         page.classList.remove('active');
     });
 
-    // Show selected page
+
     const targetPage = document.getElementById(pageId + '-page');
     if (targetPage) {
         targetPage.classList.add('active');
     }
 
-    // Update navigation active states
     updateNavigation(pageId);
-
-    // Close mobile menu if open
     closeMobileMenu();
 
-    // Scroll to top
     window.scrollTo({ top: 0, behavior: 'smooth' });
 }
 
-// Update navigation active states
 function updateNavigation(activePageId) {
     const navLinks = document.querySelectorAll('.nav-link');
     navLinks.forEach(link => {
         link.classList.remove('active');
     });
 
-    // Find and activate the corresponding nav link
     const activeLink = document.querySelector(`[onclick="showPage('${activePageId}')"]`);
     if (activeLink && activeLink.classList.contains('nav-link')) {
         activeLink.classList.add('active');
     }
 }
 
-// Mobile Menu Functions
 function toggleMobileMenu() {
     const mobileMenu = document.getElementById('mobileMenu');
     mobileMenu.classList.toggle('active');
@@ -46,7 +38,6 @@ function closeMobileMenu() {
     mobileMenu.classList.remove('active');
 }
 
-// Smooth Scrolling for Internal Links
 function smoothScroll(targetId) {
     const target = document.getElementById(targetId);
     if (target) {
@@ -57,7 +48,6 @@ function smoothScroll(targetId) {
     }
 }
 
-// Animation Observer for Elements
 function observeElements() {
     const observer = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
@@ -70,14 +60,12 @@ function observeElements() {
         rootMargin: '0px 0px -50px 0px'
     });
 
-    // Observe animated elements
     const animatedElements = document.querySelectorAll('.feature-card, .content-card');
     animatedElements.forEach(el => {
         observer.observe(el);
     });
 }
 
-// Header Scroll Effect
 function handleHeaderScroll() {
     const header = document.querySelector('.header');
     let lastScrollTop = 0;
@@ -86,10 +74,8 @@ function handleHeaderScroll() {
         const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
         
         if (scrollTop > lastScrollTop && scrollTop > 100) {
-            // Scrolling down
             header.style.transform = 'translateY(-100%)';
         } else {
-            // Scrolling up
             header.style.transform = 'translateY(0)';
         }
         
@@ -97,7 +83,6 @@ function handleHeaderScroll() {
     });
 }
 
-// Form Validation (for future use)
 function validateForm(formId) {
     const form = document.getElementById(formId);
     if (!form) return false;
@@ -152,7 +137,7 @@ function showToast(message, type = 'info') {
     }, 3000);
 }
 
-// Add CSS para toast animações
+// css toast
 function addToastStyles() {
     if (document.getElementById('toast-styles')) return;
 
@@ -184,7 +169,7 @@ function addToastStyles() {
     document.head.appendChild(style);
 }
 
-// Loading State Management
+//loading
 function showLoading(elementId) {
     const element = document.getElementById(elementId);
     if (element) {

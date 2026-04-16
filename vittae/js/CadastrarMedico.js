@@ -1,6 +1,5 @@
 document.addEventListener('DOMContentLoaded', () => {
 
-    // ── Referências ──────────────────────────────────────────────
     const form = document.getElementById('formCadastroCompleto');
     const btnCancelar = document.getElementById('btnCancelarCadastro');
     const cpfInput = document.getElementById('cpfMedico');
@@ -10,7 +9,6 @@ document.addEventListener('DOMContentLoaded', () => {
     const fotoPreview = document.getElementById('fotoPreview');
     const fotoIcone = document.getElementById('fotoIcone');
 
-    // ── Dados ────────────────────────────────────────────────────
     const ESPECIALIDADES = [
         'Cardiologia', 'Dermatologia', 'Pediatria', 'Ortopedia',
         'Ginecologia', 'Oftalmologia', 'Neurologia', 'Psiquiatria',
@@ -29,10 +27,6 @@ document.addEventListener('DOMContentLoaded', () => {
     ];
 
     let especialidadesSelecionadas = [];
-
-    // ════════════════════════════════════════════════════════════
-    // FOTO
-    // ════════════════════════════════════════════════════════════
     fotoCirculo.addEventListener('click', () => fotoInput.click());
 
     fotoInput.addEventListener('change', function () {
@@ -51,9 +45,7 @@ document.addEventListener('DOMContentLoaded', () => {
         reader.readAsDataURL(file);
     });
 
-    // ════════════════════════════════════════════════════════════
-    // MÁSCARAS
-    // ════════════════════════════════════════════════════════════
+    //MASCARA
     cpfInput.addEventListener('input', function () {
         let v = this.value.replace(/\D/g, '').slice(0, 11);
         v = v.replace(/(\d{3})(\d)/, '$1.$2')
@@ -68,9 +60,8 @@ document.addEventListener('DOMContentLoaded', () => {
         this.value = v;
     });
 
-    // ════════════════════════════════════════════════════════════
-    // ESPECIALIDADES – CHIPS
-    // ════════════════════════════════════════════════════════════
+    //CHIPS
+
     function inicializarChips() {
         const container = document.getElementById('chipsContainer');
         ESPECIALIDADES.forEach(nome => {
@@ -113,9 +104,7 @@ document.addEventListener('DOMContentLoaded', () => {
             `${especialidadesSelecionadas.length}/3 selecionadas`;
     }
 
-    // ════════════════════════════════════════════════════════════
-    // DISPONIBILIDADE
-    // ════════════════════════════════════════════════════════════
+    //disp
     function inicializarDisponibilidade() {
         const container = document.getElementById('dispContainer');
 
@@ -161,9 +150,7 @@ document.addEventListener('DOMContentLoaded', () => {
         }));
     }
 
-    // ════════════════════════════════════════════════════════════
-    // VALIDAÇÃO
-    // ════════════════════════════════════════════════════════════
+   //validacao
     function marcarErro(id, mensagem) {
         const input = document.getElementById(id);
         const span = document.getElementById(`err-${id.replace('Medico', '').replace('medico', '')}`);
@@ -252,9 +239,8 @@ document.addEventListener('DOMContentLoaded', () => {
         return valido;
     }
 
-    // ════════════════════════════════════════════════════════════
-    // SUBMIT
-    // ════════════════════════════════════════════════════════════
+//submit
+
     form.addEventListener('submit', function (e) {
         e.preventDefault();
         if (!validarFormulario()) return;
@@ -304,9 +290,9 @@ document.addEventListener('DOMContentLoaded', () => {
             });
     });
 
-    // ════════════════════════════════════════════════════════════
-    // CANCELAR / RESET
-    // ════════════════════════════════════════════════════════════
+    
+
+    //cancelar /rest
     btnCancelar.addEventListener('click', resetarFormulario);
 
     function resetarFormulario() {
@@ -335,9 +321,7 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // ════════════════════════════════════════════════════════════
-    // TOAST
-    // ════════════════════════════════════════════════════════════
+    //toast
     function mostrarToast(mensagem, tipo = 'sucesso') {
         const toast = document.getElementById('toast');
         toast.textContent = mensagem;
@@ -345,9 +329,7 @@ document.addEventListener('DOMContentLoaded', () => {
         setTimeout(() => toast.classList.remove('visivel'), 3000);
     }
 
-    // ════════════════════════════════════════════════════════════
-    // INIT
-    // ════════════════════════════════════════════════════════════
+    //INIT
     inicializarChips();
     inicializarDisponibilidade();
 });

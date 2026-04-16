@@ -1,9 +1,6 @@
 (function () {
     "use strict";
 
-    // ==========================================
-    // ESTADO GLOBAL DA APLICAÇÃO
-    // ==========================================
     let doctors = [];
     let currentStep = 1;
     let selectedDoctor = null;
@@ -21,10 +18,6 @@
         patientSex: "",
         observations: ""
     };
-
-    // ==========================================
-    // INICIALIZAÇÃO
-    // ==========================================
     async function init() {
         setupEventListeners();
         setMinDate();
@@ -32,9 +25,7 @@
         await fetchDoctors();
     }
 
-    // ==========================================
-    // NAVEGAÇÃO DE ABAS (Ex: Paciente.js)
-    // ==========================================
+    //NAVEGACAO BARRAS
 
     window.irParaHistorico = function () {
         const modal = document.getElementById('modalSucesso');
@@ -48,9 +39,8 @@
         resetForm();
     };
 
-    // ==========================================
-    // EVENTOS DO FORMULÁRIO DE AGENDAMENTO
-    // ==========================================
+    
+    //FORM AGEND
     function setupEventListeners() {
         const prevBtn = document.getElementById("prevBtn");
         const nextBtn = document.getElementById("nextBtn");
@@ -85,7 +75,7 @@
             });
         }
 
-        // Máscara de CPF
+        //MASK CPF
         if (cpfInput) {
             cpfInput.addEventListener("input", function (e) {
                 let value = e.target.value.replace(/\D/g, "");
@@ -98,7 +88,7 @@
             });
         }
 
-        // Máscara de Telefone
+        //MASC TELE
         if (phoneInput) {
             phoneInput.addEventListener("input", function (e) {
                 let value = e.target.value.replace(/\D/g, "");
@@ -110,7 +100,7 @@
             });
         }
 
-        // Máscara de Data de Nascimento
+        //MASC DATANASC
         if (birthDateInput) {
             birthDateInput.addEventListener("input", function (e) {
                 let value = e.target.value.replace(/\D/g, "");
@@ -131,9 +121,7 @@
         }
     }
 
-    // ==========================================
-    // MÉDICOS (BUSCAR E RENDERIZAR)
-    // ==========================================
+    //BUSCAR E REND MED
     async function fetchDoctors() {
         const list = document.getElementById("doctorsList");
         if (list) list.innerHTML = '<p style="text-align:center;color:#718096;padding:40px;">Carregando médicos...</p>';
@@ -230,9 +218,7 @@
         renderDoctors(filtered);
     }
 
-    // ==========================================
-    // ETAPAS E NAVEGAÇÃO
-    // ==========================================
+    //ETAPAS CONSULTA E NAVEG
     function updateProgressBar() {
         const progress = ((currentStep - 1) / 2) * 100;
         const progressBar = document.getElementById("progressBar");
@@ -293,9 +279,7 @@
         }
     }
 
-    // ==========================================
-    // VALIDAÇÃO CORRIGIDA (O ERRO ESTAVA AQUI)
-    // ==========================================
+
     function validateCurrentStep() {
         if (currentStep === 1) {
             const typeEl = document.getElementById("consultaType");
@@ -365,12 +349,7 @@
         return true;
     }
 
-    // ==========================================
-    // ENVIO PARA O BACKEND
-    // ==========================================
-    // ==========================================
-    // ENVIO PARA O BACKEND (CORRIGIDO)
-    // ==========================================
+    //envio p back
     async function submitForm() {
         if (!validateCurrentStep()) return;
 
@@ -383,13 +362,14 @@
                 submitBtn.disabled = true;
             }
 
-            // Formatação da data de nascimento para o padrão do Banco (ISO)
+            
+            //form data
             let dataNascFormatada = null;
             if (formData.patientBirthDate) {
                 dataNascFormatada = formData.patientBirthDate.split('/').reverse().join('-');
             }
 
-            // Montagem do objeto exatamente como o seu Java espera
+            //montagem do objeto
             const agendamentoDTO = {
                 tipoConsulta: formData.consultaType,
                 especialidade: selectedDoctor.specialty,
@@ -415,9 +395,7 @@
             });
 
             if (response.ok) {
-                // === AQUI ENTRA A MÁGICA DO RESUMO ===
-
-                // 1. Preenche os campos do resumo no modal
+                //modal
                 const resPaciente = document.getElementById('resumoPaciente');
                 const resMedico = document.getElementById('resumoMedico');
                 const resData = document.getElementById('resumoData');
@@ -426,7 +404,7 @@
                 if (resPaciente) resPaciente.innerText = formData.patientName;
                 if (resMedico) resMedico.innerText = selectedDoctor.name;
 
-                // Formata a data de YYYY-MM-DD para DD/MM/YYYY no resumo
+                //foratacao de data
                 if (resData) {
                     const dataBr = formData.date.split('-').reverse().join('/');
                     resData.innerText = dataBr;
@@ -434,7 +412,7 @@
 
                 if (resHora) resHora.innerText = formData.time;
 
-                // 2. Abre o seu modal (usando o ID que você já tem no código)
+                //abre o modal)
                 const successModal = document.getElementById("modalSucesso");
                 if (successModal) {
                     successModal.style.display = 'flex'; // Garante que aparece

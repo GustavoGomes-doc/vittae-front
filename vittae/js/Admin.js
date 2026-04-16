@@ -3,7 +3,6 @@ document.addEventListener('DOMContentLoaded', () => {
     const sections = document.querySelectorAll('.content-section');
 
 
-    // Botões "Atender"
     document.querySelectorAll('.btn-main-small, .btn-main').forEach(btn => {
         btn.addEventListener('click', function () {
             const originalText = this.innerText;

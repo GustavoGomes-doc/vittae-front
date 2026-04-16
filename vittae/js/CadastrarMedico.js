@@ -61,6 +61,16 @@ document.addEventListener('DOMContentLoaded', () => {
         this.value = v;
     });
 
+    telefoneInput.addEventListener('input', function () {
+        let v = this.value.replace(/\D/g, '').slice(0, 11);
+        if (v.length > 10) {
+            v = v.replace(/(\d{2})(\d{5})(\d{4})/, '($1) $2-$3');
+        } else {
+            v = v.replace(/(\d{2})(\d{4})(\d{0,4})/, '($1) $2-$3');
+        }
+        this.value = v;
+    });
+
     //CHIPS
 
     function inicializarChips() {
@@ -151,7 +161,7 @@ document.addEventListener('DOMContentLoaded', () => {
         }));
     }
 
-   //validacao
+    //validacao
     function marcarErro(id, mensagem) {
         const input = document.getElementById(id);
         const span = document.getElementById(`err-${id.replace('Medico', '').replace('medico', '')}`);
@@ -185,6 +195,11 @@ document.addEventListener('DOMContentLoaded', () => {
         const cpf = cpfInput.value.replace(/\D/g, '');
         marcarInputErro('cpfMedico', cpf.length !== 11);
         if (cpf.length !== 11) { exibirErro('cpf'); valido = false; } else ocultarErro('cpf');
+
+        //TELFONE
+        const telefone = telefoneInput.value.replace(/\D/g, '');
+        marcarInputErro('telefoneMedico', telefone.length < 10);
+        if (telefone.length < 10) { exibirErro('telefone'); valido = false; } else ocultarErro('telefone');
 
         // Data de Nascimento
         const nasc = document.getElementById('dataNascimento').value;
@@ -240,7 +255,7 @@ document.addEventListener('DOMContentLoaded', () => {
         return valido;
     }
 
-//submit
+    //submit
 
     form.addEventListener('submit', function (e) {
         e.preventDefault();
@@ -249,6 +264,7 @@ document.addEventListener('DOMContentLoaded', () => {
         // Monta payload conforme modelo de objetos
         const payload = {
             nome: document.getElementById('nomeMedico').value.trim(),
+            telefone: telefoneInput.value.replace(/\D/g, ''),
             cpf: cpfInput.value.replace(/\D/g, ''),
             dataNascimento: document.getElementById('dataNascimento').value,
             crm: document.getElementById('crmMedico').value.trim(),
@@ -265,31 +281,28 @@ document.addEventListener('DOMContentLoaded', () => {
         };
 
         console.log('Payload para o backend:', payload);
-        mostrarToast('Médico cadastrado com sucesso!', 'sucesso');
-        resetarFormulario();
 
-
-        fetch('http://localhost:8082/api/medicos', {
+        fetch('http://localhost:8081/api/medicos', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify(payload)
         })
-        .then(async res => {
-            // Se não estiver OK (ex: 403, 404, 500)
-            if (!res.ok) {
-                let mensagemErro = `Erro ${res.status}`;
-                try {
-                    // Tenta ler o JSON de erro, se falhar, usa o status de texto
-                    const errData = await res.json();
-                    mensagemErro = errData.message || mensagemErro;
-                } catch (e) {
-                    // Se cair aqui, é porque o servidor enviou um erro sem corpo JSON
-                    if(res.status === 403) mensagemErro = "Acesso negado (403). Verifique as permissões do backend.";
+            .then(async res => {
+                // Se não estiver OK (ex: 403, 404, 500)
+                if (!res.ok) {
+                    let mensagemErro = `Erro ${res.status}`;
+                    try {
+                        // Tenta ler o JSON de erro, se falhar, usa o status de texto
+                        const errData = await res.json();
+                        mensagemErro = errData.message || mensagemErro;
+                    } catch (e) {
+                        // Se cair aqui, é porque o servidor enviou um erro sem corpo JSON
+                        if (res.status === 403) mensagemErro = "Acesso negado (403). Verifique as permissões do backend.";
+                    }
+                    throw new Error(mensagemErro);
                 }
-                throw new Error(mensagemErro);
-            }
-            return res.json();
-        })
+                return res.json();
+            })
             .then(data => {
                 console.log('Médico cadastrado:', data);
                 mostrarToast('Médico cadastrado com sucesso!', 'sucesso');
@@ -301,7 +314,7 @@ document.addEventListener('DOMContentLoaded', () => {
             });
     });
 
-    
+
 
     //cancelar /rest
     btnCancelar.addEventListener('click', resetarFormulario);
